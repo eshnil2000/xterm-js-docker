@@ -1,6 +1,6 @@
 sudo docker run --name xtermjs-001 \
   -d -p 9999:3000 \
-  -e PASSWORD="badpassword" \
+  -e NICETOKEN="replacethistoken" \
   -v /srv/persistent-data/homedirs/user001:/home/student/work \
   -e NB_UID=1000 \
   xtermjs 
