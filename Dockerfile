@@ -54,8 +54,11 @@ ENV LANGUAGE en_US.UTF-8
 RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER 
 
 # grab xterm.js and install it
+#RUN cd /usr/local/src ; \
+#    git clone https://github.com/sourcelair/xterm.js.git ; \ 
+#    chown -R $NB_USER xterm.js
 RUN cd /usr/local/src ; \
-    git clone https://github.com/sourcelair/xterm.js.git ; \ 
+    git clone https://github.com/mccahill/xterm.js.git ; \ 
     chown -R $NB_USER xterm.js
 
 USER $NB_USER
@@ -73,8 +76,11 @@ RUN chown -R $NB_USER:users /home/$NB_USER
 # expose the xterm.js port
 EXPOSE 3000
 
-# Add local files as late as possible to avoid cache busting
-COPY start-xtermjs.sh /usr/local/bin/
+# the version ofthe script that does zero authentication
+# COPY start-xtermjs.sh /usr/local/bin/
+
+# use the version ofthe script that does bearer token auth
+COPY start-xtermjs-auth.sh /usr/local/bin/start-xtermjs.sh
 
 # Configure container startup
 ENTRYPOINT ["tini", "--"]
