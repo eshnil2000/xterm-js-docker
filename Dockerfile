@@ -77,7 +77,7 @@ RUN chown -R $NB_USER:users /home/$NB_USER
 EXPOSE 3000
 
 # script to start the nterm.js node app
-COPY start-xtermjs-auth.sh /usr/local/bin/start-xtermjs.sh
+COPY start-xtermjs.sh /usr/local/bin/start-xtermjs.sh
 
 # Configure container startup
 ENTRYPOINT ["tini", "--"]
