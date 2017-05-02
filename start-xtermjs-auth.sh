@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+export NICETOKEN
 
 #
 # start xtermjs
@@ -24,10 +25,10 @@ if [ $UID == 0 ] ; then
     fi
 
     # Exec the command as NB_USER
-    exec su $NB_USER -c "env PATH=$PATH npm  /usr/local/src/xterm.js start-with-auth "
+    exec su $NB_USER -c "env PATH=$PATH npm  /usr/local/src/xterm.js terminalauth "
 else
     # Exec the command
-    exec npm --prefix /usr/local/src/xterm.js start-with-auth  
+    exec npm --prefix /usr/local/src/xterm.js terminalauth  
 fi
 
 
