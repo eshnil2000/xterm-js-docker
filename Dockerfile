@@ -76,10 +76,7 @@ RUN chown -R $NB_USER:users /home/$NB_USER
 # expose the xterm.js port
 EXPOSE 3000
 
-# the version ofthe script that does zero authentication
-# COPY start-xtermjs.sh /usr/local/bin/
-
-# use the version ofthe script that does bearer token auth
+# script to start the nterm.js node app
 COPY start-xtermjs-auth.sh /usr/local/bin/start-xtermjs.sh
 
 # Configure container startup
