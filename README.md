@@ -41,7 +41,7 @@ so an individual instance of a container is loaunched something like this:
             xtermjs 
 ```
 
-We mount an external volume to the doocker container for the /home/student/work 
+We mount an external volume to the doocker container for the /home/student/work  
 directory so that student's work will persist across container restart.  
 
 The NB_UID is used to set the file ownership so that the student owns their files.  
