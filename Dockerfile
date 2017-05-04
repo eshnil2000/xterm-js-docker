@@ -1,7 +1,3 @@
-# Copyright (c) Jupyter Development Team.
-# Distributed under the terms of the Modified BSD License.
-
-#FROM debian:jessie 
 FROM ubuntu:16.04
 
 MAINTAINER Mark McCahill "mark.mccahill@duke.edu"
@@ -54,9 +50,6 @@ ENV LANGUAGE en_US.UTF-8
 RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER 
 
 # grab xterm.js and install it
-#RUN cd /usr/local/src ; \
-#    git clone https://github.com/sourcelair/xterm.js.git ; \ 
-#    chown -R $NB_USER xterm.js
 RUN cd /usr/local/src ; \
     git clone https://github.com/mccahill/xterm.js.git ; \ 
     chown -R $NB_USER xterm.js
