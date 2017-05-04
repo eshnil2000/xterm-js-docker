@@ -7,9 +7,9 @@ You might do this if you wanted a browser-based zero-install environment for a c
 
 Xterm.js is a terminal front-end component written in JavaScript that works in the browser.  
 For details see   
-  [https://github.com/mccahill/xterm.js]   
+  https://github.com/mccahill/xterm.js   
 which was forked from   
-  [https://github.com/sourcelair/xterm.js]   
+  https://github.com/sourcelair/xterm.js   
 
 
 ### Architecture
@@ -20,7 +20,7 @@ container as needed by editing the Dockerfile andf then running the build script
 
 The base xterm.js library does not authenticate the user before giving them a bash  
 shell, so this fork includes some simple authentication using the Passport library  
-for node.js express frameworks. Passport is found here: [https://www.passportjs.org/].  
+for node.js express frameworks. Passport is found here: https://www.passportjs.org/.  
 
 In the forked version of xterm.js at https://github.com/mccahill/xterm.js there is a  
 subdirectory named "terminalauth". The terminalauth app uses the "local" passport  
@@ -72,8 +72,8 @@ container and automatically log them in. Ideally, you would also run the entire 
 session over https so that everything is encrypted.
 
 To accomplish all of this, we use two additional containerized services:  
-- nginx [https://github.com/nginxinc/docker-nginx]  
-- docker-gen [https://github.com/jwilder/docker-gen]  
+- nginx https://github.com/nginxinc/docker-nginx  
+- docker-gen https://github.com/jwilder/docker-gen  
 
 Nginx provides https support by accepting https connections and proxying them to the  
 appropriate container port on the local server. Nginx needs a configuration file to to  
@@ -93,7 +93,7 @@ settings -- something you will want to be able to do when your server starts.
 
 For details on the configurations of these services used at Duke and an example how to  
 script startup of a cluster of RStudio instances front-ended by nginx and docker-gen see  
-[https://github.com/mccahill/docker-gen/tree/duke]
+https://github.com/mccahill/docker-gen/tree/duke
 
 
 
