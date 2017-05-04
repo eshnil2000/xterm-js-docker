@@ -12,7 +12,7 @@ which was forked from
   [https://github.com/sourcelair/xterm.js]   
 
 
-###Architecture
+### Architecture
 
 The xterm.js container is built from an Ubuntu 16.04 base image and includes some  
 common Linux development tools - if you can add more tools and rebuild the  
