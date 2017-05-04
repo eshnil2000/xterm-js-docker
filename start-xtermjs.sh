@@ -6,10 +6,6 @@ set -e
 # start xtermjs
 # 
 
-#cd /usr/local/src/xterm.js
-#npm install
-#cd demo
-
 # Handle special flags if we're root
 if [ $UID == 0 ] ; then
     # Change UID of NB_USER to NB_UID if it does not match
