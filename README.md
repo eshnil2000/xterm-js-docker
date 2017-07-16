@@ -96,6 +96,45 @@ script startup of a cluster of RStudio instances front-ended by nginx and docker
 https://github.com/mccahill/docker-gen/tree/duke
 
 
+### Authenticating to start a session
+
+Presumably, you will want the user connecting to the docker container to present  
+credentials before the session is started. If a container was started like this  
+
+
+```
+          sudo docker run --name xtermjs-001 \
+            -d -p 9999:3000 \
+            -e NICETOKEN="replacethistoken" \
+            -v /srv/persistent-data/homedirs/user001:/home/student/work \
+            -e NB_UID=1000 \
+            xtermjs 
+```
+
+You would need to present a username and a token to access the container. To do this  
+dynamically, you might have some Ruby on rails code substitute the token for this  
+container instance into a form you generate and then use javascript to execute a submit  
+from the user's web browser to the server - something like this:
+
+```
+        <script type="text/javascript">  
+          function submitRealForm() {  
+            document.getElementById('token_input').value = "replacethistoken";  
+            document.getElementById('username_input').value = "username_will_be_ignored";  
+            document.realform.submit();  
+          }  
+        </script>  
+           <form action="http://hostname_goes_here:port_goes_here/" name="realform" method="GET">  
+           <input type="hidden" name="token" id="token_input" value="0"/>  
+           <input type="hidden" name="username" id="username_input" value="0"/>  
+        </form>  
+        <script type="text/javascript">  
+          window.onload=submitRealForm()  
+        </script>  
+```
+
+Note that although you have to send something in the username field, it will be ignored  
+since the Docker container has the username hardwired.
 
 
 

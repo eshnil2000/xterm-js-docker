@@ -60,6 +60,8 @@ USER $NB_USER
 RUN cd /usr/local/src/xterm.js ; \
     npm install 
 
+USER $NB_USER
+
 # put a better .bashrc in place
 COPY default-bashrc /home/$NB_USER/.bashrc
 
@@ -78,5 +80,3 @@ CMD ["start-xtermjs.sh"]
 
 # Switch back to student to avoid accidental container runs as root
 USER $NB_USER
-
-
