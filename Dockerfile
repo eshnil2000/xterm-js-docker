@@ -6,8 +6,8 @@ USER root
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get -yq dist-upgrade \
- && apt-get install -yq --no-install-recommends \
+RUN apt-get  update && apt-get -yq dist-upgrade \
+ && apt-get install -yq  --no-install-recommends \
     curl \
     wget \
     bzip2 \
@@ -51,14 +51,17 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER
 
 # grab xterm.js and install it
 RUN cd /usr/local/src ; \
-    git clone https://github.com/mccahill/xterm.js.git ; \ 
-    chown -R $NB_USER xterm.js
+    git              clone   https://gitlab.oit.duke.edu/mccahill/xterm.js ; chown -R $NB_USER xterm.js
 
 USER $NB_USER
 
 # build the xterm.js node.js application
 RUN cd /usr/local/src/xterm.js ; \
     npm install 
+
+# remove the npm build artifacts 
+RUN rm -rf /home/student/.npm
+RUN rm -rf /home/student/.node-gyp
 
 USER $NB_USER
 
@@ -72,7 +75,7 @@ RUN chown -R $NB_USER:users /home/$NB_USER
 EXPOSE 3000
 
 # script to start the nterm.js node app
-COPY start-xtermjs.sh /usr/local/bin/start-xtermjs.sh
+COPY start-xtermjs.sh   /usr/local/bin/start-xtermjs.sh
 
 # Configure container startup
 ENTRYPOINT ["tini", "--"]

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+NODE_ENV=production
 
 #
 # start xtermjs
@@ -24,3 +25,4 @@ else
     # Exec the command
     exec npm --prefix /usr/local/src/xterm.js start  
 fi
+
