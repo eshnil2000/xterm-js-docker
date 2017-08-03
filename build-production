@@ -1,0 +1,3 @@
+sudo docker rmi xtermjs-old --force
+sudo docker tag xtermjs xtermjs-old
+sudo docker build --tag xtermjs .
