@@ -107,6 +107,8 @@ then
     esac
     passing=`echo $assninfo | cut -f2 -d":"`
     (cd ${STUDENT} &&  git add ${assn}/grade.txt && git commit -m graded) >/dev/null 2>/dev/null
+    # (1) We'll write the grade to /grader/grades.txt
+    echo "${assn}:${fgr}" >>/grader/grades.txt
     if [ "$ngr" -ge "$passing" ]
     then
         echo ""
@@ -114,6 +116,25 @@ then
         echo " | You have passed this assignment! |"
         echo " +==================================+"
         echo ""
+	# (2) We'll track some stuff in /grader in case we have to
+	# give just one "overall" grade for the course.
+	for course in /home/assignments/grades/passed.*
+	do
+	    cline=`grep ${assn}: ${course}`
+	    if [ "$cline" != "" ]
+	    then
+		(grep -v "${assn}: ${course}" ; echo "${assn}:P") > ${course}
+		asntotal=`wc -l ${course} | cut -f1 -d" " |tr -d ' '`
+		asnpassed=`grep :P ${course} | wc -l | tr -d' '`
+		if [ "$asnpassed" == "$asntotal" ]
+		then
+		    cname=`basename $course | cut -f2 -d"."`
+		    echo "1.0" > /grader/grade.${cname}
+		fi
+		break
+	    fi
+	done
+	
         # ccode=`echo $assninfo | cut -f4 -d":"`
         # if [ "$ccode" != "" ]
         # then
