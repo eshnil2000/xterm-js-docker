@@ -103,7 +103,7 @@ COPY start-xtermjs.sh   /usr/local/bin/start-xtermjs.sh
 # create the directory where the grader will write grades
 RUN mkdir /grader ; \
     chown $GR_USER grader ; \
-    chmod go-rxw /grader
+    chmod 700 /grader
 
 USER $GR_USER
 ENV HOME /home/$GR_USER
