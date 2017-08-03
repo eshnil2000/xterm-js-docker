@@ -1,0 +1,48 @@
+before_script:
+  - whoami
+  - sudo docker --version
+  - pwd; ls -la
+
+stages:
+  - build
+  - deploy_staging
+  - deploy
+
+build1:
+  tags: 
+    - production1
+    - coursera-xtermjs
+  stage: build
+  script: 
+    - echo "Building the app in staging"
+    - ./build-test
+
+deploy_staging1:
+  tags: 
+    - production1
+    - coursera-xtermjs
+  stage: deploy
+  script:
+    - echo "Deploy to staging server"
+    - ./run-test-instance
+  environment:
+    name: staging
+  only:
+  - staging
+
+
+deploy_production1:
+  tags: 
+    - production1
+    - coursera-xtermjs
+  stage: deploy
+  script:
+    - echo "Building the production app"
+    - ./build-production
+    - echo "Deploy to production server"
+    - cd /srv/persistent-data/docker-scripts; ./run-everything
+  environment:
+    name: production
+  only:
+  - master
+
