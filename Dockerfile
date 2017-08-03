@@ -60,7 +60,7 @@ RUN useradd -m -s /bin/bash  -u $GR_UID $GR_USER
 
 # grab xterm.js and install it
 RUN cd /usr/local/src ; \
-    git              clone   https://gitlab.oit.duke.edu/mccahill/xterm.js ; chown -R $NB_USER xterm.js
+    git clone https://gitlab.oit.duke.edu/mccahill/xterm.js ; chown -R $NB_USER xterm.js
 
 USER $NB_USER
 
@@ -99,6 +99,12 @@ EXPOSE 3000
 
 # script to start the nterm.js node app
 COPY start-xtermjs.sh   /usr/local/bin/start-xtermjs.sh
+
+# create the directory where the grader will write grades
+RUN mkdir /grader ; \
+    chown $GR_USER grader ; \
+    chmod go-rxw /grader
+
 USER $GR_USER
 ENV HOME /home/$GR_USER
 RUN mkdir /home/grader/graders
