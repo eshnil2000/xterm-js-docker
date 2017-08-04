@@ -54,9 +54,8 @@ ENV LANGUAGE en_US.UTF-8
 ENV GR_UID 1001
 ENV GR_USER grader
 ENV GR_HOME /graderhome
-ENV GIT_REMOTE_DIR /home/assignments/git/
-ENV GIT_REMOTE $GIT_REMOTE_DIR/learn2prog
-ENV GRADE_PASSED /home/assignments/grades
+ENV GIT_REMOTE /git-remote/learn2prog
+ENV GRADE_PASSED /grader
 
 # Create student user with UID=1000 and in the 'users' group
 RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER 
@@ -110,9 +109,10 @@ EXPOSE 3000
 # script to start the nterm.js node app
 COPY start-xtermjs.sh   /usr/local/bin/start-xtermjs.sh
 
+# This has now been done above (but different ownership/permissions)
 # create the directory where the git-remote for the student will reside
-RUN mkdir /git-remote ; \
-    chown $NB_USER /git-remote 
+#RUN mkdir /git-remote ; \
+#    chown $NB_USER /git-remote 
 
 # create the directory where the grader will write grades
 RUN mkdir /grader ; \
@@ -129,7 +129,9 @@ RUN cd $GIT_REMOTE && \
     git init --bare --shared=all && \
     chmod -R ugo+rwX $GIT_REMOTE && \
     cd $GR_HOME/student && \
-    git clone $GIT_REMOTE
+    pwd &&\
+    git clone $GIT_REMOTE && \
+    ls
 COPY README $GR_HOME/student/learn2prog
 RUN cd $GR_HOME/student/learn2prog && \
     git add README && \
