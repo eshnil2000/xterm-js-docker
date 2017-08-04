@@ -110,9 +110,13 @@ EXPOSE 3000
 # script to start the nterm.js node app
 COPY start-xtermjs.sh   /usr/local/bin/start-xtermjs.sh
 
+# create the directory where the git-remote for the student will reside
+RUN mkdir /git-remote ; \
+    chown $NB_USER /git-remote 
+
 # create the directory where the grader will write grades
 RUN mkdir /grader ; \
-    chown $GR_USER grader ; \
+    chown $GR_USER /grader ; \
     chmod 700 /grader
 
 USER $GR_USER

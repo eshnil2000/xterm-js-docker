@@ -8,6 +8,7 @@ sudo docker run --name xtermjs-test-443 \
   -e MAP_VIRTUAL_PORT=443 \
   -v /srv/persistent-data/homedirs/monitoring-user\:/home/student \
   -v /srv/persistent-data/gradedirs/grader-monitoring-user\:/grader \
+  -v /srv/persistent-data/git-remotes/monitoring-user\:/git-remote \
   -e NB_UID=1000 \
   -t xtermjs-test
   
