@@ -118,7 +118,7 @@ then
         echo ""
 	# (2) We'll track some stuff in /grader in case we have to
 	# give just one "overall" grade for the course.
-	for course in /home/assignments/grades/passed.*
+	for course in /grader/passed.*
 	do
 	    cline=`grep ${assn}: ${course}`
 	    if [ "$cline" != "" ]
