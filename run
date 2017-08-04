@@ -1,7 +1,7 @@
 sudo docker run --name xtermjs-001 \
   -d -p 9999:3000 \
   -e NICETOKEN="replacethistoken" \
-  -v /srv/persistent-data/homedirs/user001:/home \
+  -v /srv/persistent-data/homedirs/user001:/home/student \
   -v /srv/persistent-data/gradedirs/grader001:/grader \
   -e NB_UID=1000 \
   xtermjs 
