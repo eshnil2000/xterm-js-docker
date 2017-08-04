@@ -53,10 +53,14 @@ ENV LANGUAGE en_US.UTF-8
 
 ENV GR_UID 1001
 ENV GR_USER grader
+ENV GR_HOME /graderhome
+ENV GIT_REMOTE_DIR /home/assignments/git/
+ENV GIT_REMOTE $GIT_REMOTE_DIR/learn2prog
+ENV GRADE_PASSED /home/assignments/grades
 
 # Create student user with UID=1000 and in the 'users' group
 RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER 
-RUN useradd -m -s /bin/bash  -u $GR_UID $GR_USER 
+RUN useradd -m --home-dir  /graderhome -s /bin/bash  -u $GR_UID $GR_USER 
 
 # grab xterm.js and install it
 RUN cd /usr/local/src ; \
@@ -80,7 +84,7 @@ RUN git config --global user.email "invalid@nowhere.com "&& \
     git config --global push.default simple &&  \
     git config --global user.name "Coursera Student"
 USER $GR_USER
-ENV HOME /home/$GR_USER
+ENV HOME $GR_HOME
 
 RUN git config --global user.email "invalid@nowhere.com" && \
     git config --global push.default simple &&  \
@@ -88,12 +92,18 @@ RUN git config --global user.email "invalid@nowhere.com" && \
 
 USER root
 RUN chown -R $NB_USER:users /home/$NB_USER && \
-    chown -R $GR_USER:grader /home/$GR_USER && \
-    chmod 755 /home/$GR_USER && \
-    mkdir /home/grader/tmp && \
-    chown grader.grader /home/grader/tmp && \
-    chmod 700 /home/grader/tmp 
-
+    chown -R $GR_USER:grader $GR_HOME && \
+    chmod 755 $GR_HOME && \
+    mkdir $GR_HOME/tmp && \
+    chown grader.grader $GR_HOME/tmp && \
+    chmod 700 $GR_HOME/tmp 
+RUN mkdir  -p $GIT_REMOTE && \
+    chmod 777 $GIT_REMOTE && \
+    chown $GR_USER.$GR_USER $GIT_REMOTE && \
+    mkdir $GRADE_PASSED && \
+    chown $GR_USER.$GR_USER $GRADE_PASSED && \
+    chmod 700 $GRADE_PASSED
+    
 # expose the xterm.js port
 EXPOSE 3000
 
@@ -106,19 +116,18 @@ RUN mkdir /grader ; \
     chmod 700 /grader
 
 USER $GR_USER
-ENV HOME /home/$GR_USER
-RUN mkdir /home/grader/graders
-RUN mkdir /home/grader/work
-RUN mkdir /home/grader/student/
-RUN mkdir /home/grader/learn2prog && \
-    chmod 777 /home/grader/learn2prog
-RUN cd /home/grader/learn2prog && \
+ENV HOME $GR_HOME
+RUN mkdir $GR_HOME/graders
+RUN mkdir $GR_HOME/work
+RUN mkdir $GR_HOME/student/
+
+RUN cd $GIT_REMOTE && \
     git init --bare --shared=all && \
-    chmod -R ugo+rwX /home/grader/learn2prog && \
-    cd /home/grader/student && \
-    git clone /home/grader/learn2prog
-COPY README /home/grader/student/learn2prog
-RUN cd /home/grader/student/learn2prog && \
+    chmod -R ugo+rwX $GIT_REMOTE && \
+    cd $GR_HOME/student && \
+    git clone $GIT_REMOTE
+COPY README $GR_HOME/student/learn2prog
+RUN cd $GR_HOME/student/learn2prog && \
     git add README && \
     git commit -m 'Initial README' && \
     git push --set-upstream origin master 
@@ -126,21 +135,24 @@ RUN cd /home/grader/student/learn2prog && \
 USER $NB_USER
 ENV HOME /home/$NB_USER
 RUN cd /home/student && \
-    git clone /home/grader/learn2prog
+    git clone $GIT_REMOTE
 USER $GR_USER
-ENV HOME /home/$GR_USER
-COPY assn/00_hello /home/grader/student/learn2prog/00_hello
+ENV HOME $GR_HOME
+COPY assn/00_hello $GR_HOME/student/learn2prog/00_hello
 USER root
-RUN cd /home/grader/student/learn2prog && \
+RUN cd $GR_HOME/student/learn2prog && \
     chown -R $GR_USER.$GR_USER *
 
 USER $GR_USER
-RUN cd /home/grader/student/learn2prog && \
+RUN cd $GR_HOME/student/learn2prog && \
     git add 00_hello/* && \
     git commit -m 'Released assignment 0' && \
     git push
+COPY passed.c2 $GRADE_PASSED/
+COPY passed.c3 $GRADE_PASSED/
+COPY passed.c4 $GRADE_PASSED/    
 USER root
-RUN cd /home/grader/student/learn2prog && \
+RUN cd $GR_HOME/student/learn2prog && \
     chown -R $GR_USER.$GR_USER * 
 COPY check_git_status.sh /usr/local/bin
 COPY grade.sh /usr/local/bin
@@ -148,8 +160,7 @@ COPY grade /usr/local/bin
 COPY rungrader.sh /usr/local/bin
 COPY sudoers /etc/sudoers
 COPY mpipe /usr/local/bin
-COPY assn.txt /home/grader/data/assn.txt
-COPY secret /home/grader/data/.xxx
+COPY assn.txt $GR_HOME/data/assn.txt
 RUN chown grader.grader /usr/local/bin/grade && \
     chown grader.grader /usr/local/bin/grade.sh && \
     chown grader.grader /usr/local/bin/check_git_status.sh && \
@@ -159,10 +170,10 @@ RUN chown grader.grader /usr/local/bin/grade && \
               /usr/local/bin/rungrader.sh && \
     chmod 550 /usr/local/bin/check_git_status.sh && \
     chmod 500 /usr/local/bin/grade.sh /usr/local/bin/mpipe && \
-    chown -R grader.grader /home/grader/data && \
-    chmod 511 /home/grader && \
-    chmod 500 /home/grader/data && \
-    chmod 400 /home/grader/data/*
+    chown -R grader.grader $GR_HOME/data && \
+    chmod 511 $GR_HOME && \
+    chmod 500 $GR_HOME/data && \
+    chmod 400 $GR_HOME/data/*
 #This is so I can debug permission problems etc, by having the root password.
 #We'll take it out in the final verison.
 RUN echo 'root:M4nas23n4as87@#$@34asdR' | chpasswd
