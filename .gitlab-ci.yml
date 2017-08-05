@@ -24,10 +24,12 @@ deploy_staging1:
   stage: deploy
   script:
     - echo "copying new version of git-remote and student homedir into place"
-    - rm -rf /srv/persistent-data/gradedirs/grader-monitoring-user/*
-    - cp -R template-student-homedir/* /srv/persistent-data/homedirs/grader-monitoring-user/
-    - rm -rf /srv/persistent-data/git-remotes/monitoring-user/*
-    - cp -R template-student-git-remote/* /srv/persistent-data/git-remotes/monitoring-user/
+    - sudo rm -rf /srv/persistent-data/gradedirs/grader-monitoring-user/*
+    - sudo cp -R template-student-homedir/* /srv/persistent-data/homedirs/grader-monitoring-user/
+    - sudo chown -R azureuser:azureuser /srv/persistent-data/homedirs/grader-monitoring-user/
+    - sudo rm -rf /srv/persistent-data/git-remotes/monitoring-user/*
+    - sudo cp -R template-student-git-remote/* /srv/persistent-data/git-remotes/monitoring-user/
+    - sudo chown -R azureuser:azureuser /srv/persistent-data/git-remotes/monitoring-user/
     - echo "Deploy to staging server"
     - ./run-test-instance
   environment:
