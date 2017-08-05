@@ -3,7 +3,7 @@ sudo docker rm xtermjs-test-443
 sudo docker run --name xtermjs-test-443 \
   -d -p 127.0.0.1\:\:3000 \
   --memory 500M \
-  -e NICETOKEN=this_is_the_staging_test_password \
+  -e NICETOKEN=$SECRETPW \
   -e VIRTUAL_HOST=prog-az-00.oit.duke.edu\:443 \
   -e MAP_VIRTUAL_PORT=443 \
   -v /srv/persistent-data/homedirs/monitoring-user\:/home/student \
