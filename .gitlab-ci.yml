@@ -23,6 +23,11 @@ deploy_staging1:
     - coursera-xtermjs
   stage: deploy
   script:
+    - echo "copying new version of git-remote and student homedir into place"
+    - rm -rf /srv/persistent-data/gradedirs/grader-monitoring-user/*
+    - cp -R template-student-homedir/* /srv/persistent-data/gradedirs/grader-monitoring-user/
+    - rm -rf /srv/persistent-data/git-remotes/monitoring-user/*
+    - cp -R template-student-git-remote/* /srv/persistent-data/git-remotes/monitoring-user/
     - echo "Deploy to staging server"
     - ./run-test-instance
   environment:
