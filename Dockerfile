@@ -180,9 +180,6 @@ RUN chown grader.grader /usr/local/bin/grade && \
     chmod 511 $GR_HOME && \
     chmod 500 $GR_HOME/data && \
     chmod 400 $GR_HOME/data/*
-#This is so I can debug permission problems etc, by having the root password.
-#We'll take it out in the final verison.
-RUN echo 'root:M4nas23n4as87@#$@34asdR' | chpasswd
 
 # Configure container startup
 ENTRYPOINT ["tini", "--"]
