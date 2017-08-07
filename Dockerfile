@@ -78,10 +78,10 @@ RUN rm -rf /home/student/.node-gyp
 USER $NB_USER
 
 # put a better .bashrc in place
-COPY default-bashrc /home/$NB_USER/.bashrc
-RUN git config --global user.email "invalid@nowhere.com "&& \
-    git config --global push.default simple &&  \
-    git config --global user.name "Coursera Student"
+##COPY default-bashrc /home/$NB_USER/.bashrc
+##RUN git config --global user.email "invalid@nowhere.com "&& \
+##    git config --global push.default simple &&  \
+##    git config --global user.name "Coursera Student"
 USER $GR_USER
 ENV HOME $GR_HOME
 
@@ -98,10 +98,10 @@ RUN chown -R $NB_USER:users /home/$NB_USER && \
     chmod 700 $GR_HOME/tmp 
 RUN mkdir  -p $GIT_REMOTE && \
     chmod 777 $GIT_REMOTE && \
-    chown $GR_USER.$GR_USER $GIT_REMOTE && \
-    mkdir $GRADE_PASSED && \
-    chown $GR_USER.$GR_USER $GRADE_PASSED && \
-    chmod 700 $GRADE_PASSED
+    chown $GR_USER.$GR_USER $GIT_REMOTE 
+#    mkdir $GRADE_PASSED && \
+#    chown $GR_USER.$GR_USER $GRADE_PASSED && \
+#    chmod 700 $GRADE_PASSED
     
 # expose the xterm.js port
 EXPOSE 3000
@@ -125,41 +125,41 @@ RUN mkdir $GR_HOME/graders
 RUN mkdir $GR_HOME/work
 RUN mkdir $GR_HOME/student/
 
-RUN cd $GIT_REMOTE && \
-    git init --bare --shared=all && \
-    chmod -R ugo+rwX $GIT_REMOTE && \
-    cd $GR_HOME/student && \
-    pwd &&\
-    git clone $GIT_REMOTE && \
-    ls
-COPY README $GR_HOME/student/learn2prog
-RUN cd $GR_HOME/student/learn2prog && \
-    git add README && \
-    git commit -m 'Initial README' && \
-    git push --set-upstream origin master 
+# RUN cd $GIT_REMOTE && \
+#     git init --bare --shared=all && \
+#     chmod -R ugo+rwX $GIT_REMOTE && \
+#     cd $GR_HOME/student && \
+#     pwd &&\
+#     git clone $GIT_REMOTE && \
+#     ls
+# COPY README $GR_HOME/student/learn2prog
+# RUN cd $GR_HOME/student/learn2prog && \
+#     git add README && \
+#     git commit -m 'Initial README' && \
+#     git push --set-upstream origin master 
 
 USER $NB_USER
 ENV HOME /home/$NB_USER
-RUN cd /home/student && \
-    git clone $GIT_REMOTE
+#RUN cd /home/student && \
+#    git clone $GIT_REMOTE
 USER $GR_USER
 ENV HOME $GR_HOME
-COPY assn/00_hello $GR_HOME/student/learn2prog/00_hello
+#COPY assn/00_hello $GR_HOME/student/learn2prog/00_hello
 USER root
-RUN cd $GR_HOME/student/learn2prog && \
-    chown -R $GR_USER.$GR_USER *
+#RUN cd $GR_HOME/student/learn2prog && \
+#    chown -R $GR_USER.$GR_USER *
 
 USER $GR_USER
-RUN cd $GR_HOME/student/learn2prog && \
-    git add 00_hello/* && \
-    git commit -m 'Released assignment 0' && \
-    git push
-COPY passed.c2 $GRADE_PASSED/
-COPY passed.c3 $GRADE_PASSED/
-COPY passed.c4 $GRADE_PASSED/    
+#RUN cd $GR_HOME/student/learn2prog && \
+#    git add 00_hello/* && \
+#    git commit -m 'Released assignment 0' && \
+#    git push
+#COPY passed.c2 $GRADE_PASSED/
+#COPY passed.c3 $GRADE_PASSED/
+#COPY passed.c4 $GRADE_PASSED/    
 USER root
-RUN cd $GR_HOME/student/learn2prog && \
-    chown -R $GR_USER.$GR_USER * 
+#RUN cd $GR_HOME/student/learn2prog && \
+#    chown -R $GR_USER.$GR_USER * 
 COPY check_git_status.sh /usr/local/bin
 COPY grade.sh /usr/local/bin
 COPY grade /usr/local/bin
