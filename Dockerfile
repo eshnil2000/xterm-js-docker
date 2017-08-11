@@ -17,6 +17,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     vim \
     jed \
     emacs \
+    less \
     gcc \
     g++ \
     make \

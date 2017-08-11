@@ -116,9 +116,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ ! -d learn2prog ]
+if [ ! -d ~/learn2prog ]
 then
-    git clone /git-remote/learn2prog
+    cd ~ && git clone /git-remote/learn2prog
 fi
 
 cd 
