@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo -u grader /usr/local/bin/fast-forward.sh $@
+

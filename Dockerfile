@@ -20,6 +20,8 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     gcc \
     g++ \
     make \
+    man-db \
+    manpages-dev \
     valgrind \
     gdb \
     clang \
@@ -163,19 +165,23 @@ USER root
 COPY check_git_status.sh /usr/local/bin
 COPY grade.sh /usr/local/bin
 COPY grade /usr/local/bin
+COPY fast-forward.sh /usr/local/bin
+COPY fast-forward /usr/local/bin
 COPY rungrader.sh /usr/local/bin
 COPY sudoers /etc/sudoers
 COPY mpipe /usr/local/bin
 COPY assn.txt $GR_HOME/data/assn.txt
 RUN chown grader.grader /usr/local/bin/grade && \
     chown grader.grader /usr/local/bin/grade.sh && \
+    chown grader.grader /usr/local/bin/fast-forward && \
+    chown grader.grader /usr/local/bin/fast-forward.sh && \
     chown grader.grader /usr/local/bin/check_git_status.sh && \
     chown grader.grader /usr/local/bin/rungrader.sh && \
     chown grader.grader /usr/local/bin/mpipe &&\
-    chmod 555 /usr/local/bin/grade  \
+    chmod 555 /usr/local/bin/grade /usr/local/bin/fast-forward \
               /usr/local/bin/rungrader.sh && \
     chmod 550 /usr/local/bin/check_git_status.sh && \
-    chmod 500 /usr/local/bin/grade.sh /usr/local/bin/mpipe && \
+    chmod 500 /usr/local/bin/grade.sh /usr/local/bin/fast-forward.sh /usr/local/bin/mpipe && \
     chown -R grader.grader $GR_HOME/data && \
     chmod 511 $GR_HOME && \
     chmod 500 $GR_HOME/data && \
