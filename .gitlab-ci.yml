@@ -28,6 +28,7 @@ deploy_staging1:
     - sudo rm -rf /srv/persistent-data/homedirs/monitoring-user/*
     - sudo cp -R template-student-homedir/* /srv/persistent-data/homedirs/monitoring-user/
     - sudo cp -R template-student-homedir/.bashrc /srv/persistent-data/homedirs/monitoring-user/
+    - sudo cp -R template-student-homedir/.emacs /srv/persistent-data/homedirs/monitoring-user/
     - sudo chown -R azureuser:azureuser /srv/persistent-data/homedirs/monitoring-user/
     - sudo rm -rf /srv/persistent-data/git-remotes/monitoring-user/*
     - sudo cp -R template-student-git-remote/* /srv/persistent-data/git-remotes/monitoring-user/
