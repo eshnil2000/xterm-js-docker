@@ -141,6 +141,10 @@ RUN mkdir $GR_HOME/student/
 #     git commit -m 'Initial README' && \
 #     git push --set-upstream origin master 
 
+COPY graders ${GR_HOME}/
+RUN chown -R ${GR_USER}.${GR_USER} ${GR_HOME}/graders
+RUN chmod og-rwx -R  ${GR_HOME}/graders
+
 USER $NB_USER
 ENV HOME /home/$NB_USER
 #RUN cd /home/student && \

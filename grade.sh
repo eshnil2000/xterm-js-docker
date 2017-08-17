@@ -31,6 +31,11 @@ if [ -x "${BASE}/graders/grade-${assn}.sh" ]
 then
     GSCRIPT="${BASE}/graders/grade-${assn}.sh"
 else
+    whoami
+    echo "In ${BASE}"
+    ls ${BASE}
+    echo "IN ${BASE}/graders"
+    ls -l ${BASE}/graders/
     echo "$assn does not seem to have a grader."
     exit 1
 fi
