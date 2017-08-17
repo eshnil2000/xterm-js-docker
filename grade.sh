@@ -69,7 +69,8 @@ ${BIN}/mpipe ${BASE}/tmp/x $line  >${BASE}/tmp/out
 x="$?"
 if [ "$x" == 0 ]
 then
-    echo "- grader finished"
+    echo " - grader finished"
+    cat ${BASE}/tmp/out
     #grade report in ${BASE}/tmp/out
     mv ${BASE}/tmp/out ${STUDENT}/${assn}/grade.txt
     rm -rf ${BASE}/tmp/*
