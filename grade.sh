@@ -70,7 +70,7 @@ x="$?"
 if [ "$x" == 0 ]
 then
     echo " - grader finished"
-    cat ${BASE}/tmp/out
+    #cat ${BASE}/tmp/out
     #grade report in ${BASE}/tmp/out
     mv ${BASE}/tmp/out ${STUDENT}/${assn}/grade.txt
     rm -rf ${BASE}/tmp/*
@@ -78,8 +78,9 @@ then
     gr=`grep "Overall Grade: " ${STUDENT}/${assn}/grade.txt | cut -f2 -d":" |tr -d ' '`
     if [ "$gr" == "" ]
     then
+	#2>/dev/null  >/dev/null
         echo "Strangely, I can't seem to find your grade in the grade report"
-        (cd ${STUDENT} && git commit -a -m 'attempted grading: internal failure parsing report' && git push) 2>/dev/null  >/dev/null
+        (cd ${STUDENT} && git commit -a -m 'attempted grading: internal failure parsing report' && git push ) 
         exit 1
     fi
     case $gr in
@@ -163,7 +164,8 @@ then
 		(cd ${STUDENT} &&  git add ${STUDENT}/${next} && git commit -m 'Released assignment') 2>/dev/null  >/dev/null
             fi
 	fi
-	(cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null
+	# 2>/dev/null  >/dev/null
+	(cd ${STUDENT} &&  git push)
 	exit 0
     fi
 else
