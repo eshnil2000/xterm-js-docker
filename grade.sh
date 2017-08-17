@@ -134,36 +134,6 @@ then
 		break
 	    fi
 	done
-	
-        # ccode=`echo $assninfo | cut -f4 -d":"`
-        # if [ "$ccode" != "" ]
-        # then
-        #     cpart=`echo $assninfo | cut -f5 -d":"`
-        #     echo "If you would like to send this grade to Coursera, then enter your"
-        #     echo "authentication token now.  Otherwise, just press ENTER"
-        #     echo "NOTE: your token is NOT your password."
-        #     echo  ""
-        #     echo ""
-        #     echo -n "Token:  "
-        #     read token
-        #     #FIXME: who?
-        #     me='adhilton@ee.duke.edu'
-        #     while [ "$token" != "" ]
-        #     do
-        #         /usr/local/bin/send-to-coursera.sh "$me" "$ccode" "$cpart" "$fgr" "$token"
-        #         if [ "$?" != 0 ]
-        #         then
-        #             echo "Failed to send to coursera."
-        #             echo "Re-enter (possibly new) token to try again"
-        #             echo "Leave blank to quit"
-        #             echo ""
-        #            echo -n "Token:  "
-        #            read token
-        #         else
-        #             token=""
-        #         fi
-        #     done
-        #fi
                
         next=`echo $assninfo | cut -f3 -d":"`
         if [ -d ${STUDENT}/${next} ]
@@ -172,6 +142,12 @@ then
         else
             #release $next
             echo "- Releasing ${next}"
+	    mesg=`grep "$next" ${DATA} | cut -f4 -d"," `
+	    if [ "$mesg" != "" ]
+	    then
+		echo "You should continue watching videos until you have watched:"
+		echo "  $mesg  "
+		echo "which covers the material you will need to do $next"
             cp -r ${BASE}/dist/${next} ${STUDENT}/${next}
             (cd ${STUDENT} &&  git add ${STUDENT}/${next} && git commit -m 'Released assignment') 2>/dev/null  >/dev/null
         fi
