@@ -7,6 +7,7 @@ GUSER="grader"
 GGROUP="grader"
 GLIB="${BASE}/graders/common/graderlib.sh"
 STUDENT=${BASE}/student/learn2prog
+REMOTE=/git-remote/learn2prog
 assn=""
 if [ "$1" != "" ]
 then
@@ -44,6 +45,10 @@ sudo -u ${SUSER} -g grader -H ${BIN}/check_git_status.sh || exit 1
 
 echo " - copying/setting up code to grade"
 #FIXME: is this exit 1 in the right place?
+if [ ! -d $STUDENT ]
+then
+    (cd ${BASE}/student && git clone $REMOTE) 2>/tmp/git-error > /dev/null || ("Echo could not read your git repository: "; cat /tmp/git-error; exit 1)
+fi
 (cd ${STUDENT} && git pull) 2>/tmp/git-error >/dev/null || (echo "Could not run git pull to obtain your submission. "; cat /tmp/git-error ; exit 1)
 
 rm -rf ${BASE}/work/*
