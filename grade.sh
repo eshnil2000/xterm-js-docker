@@ -51,7 +51,7 @@ then
 fi
 (cd ${STUDENT} && git pull) 2>/tmp/git-error >/dev/null || (echo "Could not run git pull to obtain your submission. "; cat /tmp/git-error ; exit 1)
 
-rm -rf ${BASE}/work/*
+sudo -u nobody rm -rf ${BASE}/work/*
 cp -r ${STUDENT}/${assn} ${BASE}/work/${assn}
 sudo /bin/chown -R nobody.${GGROUP} ${BASE}/work
 
@@ -164,6 +164,7 @@ then
             fi
 	fi
     fi
+    echo "(cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null"
     (cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null
     exit 0
 else
