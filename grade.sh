@@ -144,7 +144,7 @@ then
 		break
 	    fi
 	done
-               
+        
         next=`echo $assninfo | cut -f3 -d":"`
         if [ -d ${STUDENT}/${next} ]
         then
@@ -158,12 +158,13 @@ then
 		echo "You should continue watching videos until you have watched:"
 		echo "  $mesg  "
 		echo "which covers the material you will need to do $next"
-            cp -r ${BASE}/dist/${next} ${STUDENT}/${next}
-            (cd ${STUDENT} &&  git add ${STUDENT}/${next} && git commit -m 'Released assignment') 2>/dev/null  >/dev/null
-        fi
+		cp -r ${BASE}/dist/${next} ${STUDENT}/${next}
+		(cd ${STUDENT} &&  git add ${STUDENT}/${next} && git commit -m 'Released assignment') 2>/dev/null  >/dev/null
+            fi
+	fi
+	(cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null
+	exit 0
     fi
-    (cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null
-    exit 0
 else
     echo "Grader failed with status $x"
     rm -rf ${BASE}/tmp/*
