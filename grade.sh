@@ -53,7 +53,7 @@ fi
 
 sudo -u nobody rm -rf ${BASE}/work/*
 cp -r ${STUDENT}/${assn} ${BASE}/work/${assn}
-sudo /bin/chown -R nobody.${GGROUP} ${BASE}/work
+sudo /bin/chown -R nobody.${GGROUP} ${BASE}/work/*
 
 line=""
 fd=4
@@ -165,7 +165,8 @@ then
 	fi
     fi
     echo "(cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null"
-    (cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null
+    2>/dev/null  >/dev/null
+    (cd ${STUDENT} &&  git push) 
     exit 0
 else
     echo "Grader failed with status $x"
