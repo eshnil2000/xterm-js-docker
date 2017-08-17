@@ -23,8 +23,7 @@ tag=`echo $assn | cut -f1 -d"_"`
 
 if [ "$assninfo" == "" -o "${tag}" == "" ]
 then
-    whoami
-    ls -l /dev/stderr
+    cat $DATA
     echo "Invalid assignment: $assn" >/dev/stderr
     exit 1
 fi

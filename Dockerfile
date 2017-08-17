@@ -63,7 +63,7 @@ ENV GRADE_PASSED /grader
 # Create student user with UID=1000 and in the 'users' group
 RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER 
 RUN useradd -m --home-dir  /graderhome -s /bin/bash  -u $GR_UID $GR_USER 
-
+RUN adduser $GR_USER tty
 # grab xterm.js and install it
 RUN cd /usr/local/src ; \
     git clone https://gitlab.oit.duke.edu/mccahill/xterm.js ; chown -R $NB_USER xterm.js
