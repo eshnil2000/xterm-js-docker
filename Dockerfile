@@ -141,9 +141,8 @@ RUN mkdir $GR_HOME/student/
 #     git commit -m 'Initial README' && \
 #     git push --set-upstream origin master 
 
-COPY graders ${GR_HOME}/
-RUN chown -R ${GR_USER}.${GR_USER} ${GR_HOME}/graders
-RUN chmod og-rwx -R  ${GR_HOME}/graders
+COPY graders ${GR_HOME}/graders/
+
 
 USER $NB_USER
 ENV HOME /home/$NB_USER
@@ -155,6 +154,9 @@ ENV HOME $GR_HOME
 USER root
 #RUN cd $GR_HOME/student/learn2prog && \
 #    chown -R $GR_USER.$GR_USER *
+RUN chown -R ${GR_USER}.${GR_USER} ${GR_HOME}/graders
+RUN chmod og-rwx -R  ${GR_HOME}/graders
+
 
 USER $GR_USER
 #RUN cd $GR_HOME/student/learn2prog && \
