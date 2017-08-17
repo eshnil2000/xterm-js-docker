@@ -118,6 +118,13 @@ fi
 
 if [ ! -d ~/learn2prog ]
 then
+    echo "What is your name?"
+    read name
+    echo "What is your email?"
+    read email
+    git config --global user.email "$email"
+    git config --global user.name "$name"
+    git config --global push.default simple
     cd ~ && git clone /git-remote/learn2prog
 fi
 

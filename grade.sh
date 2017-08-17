@@ -1,5 +1,5 @@
 #!/bin/bash
-BASE=/home/grader
+BASE=/graderhome
 DATA=${BASE}/data/assn.txt
 BIN=/usr/local/bin
 SUSER="student"
