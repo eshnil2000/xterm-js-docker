@@ -51,9 +51,9 @@ then
 fi
 (cd ${STUDENT} && git pull) 2>/tmp/git-error >/dev/null || (echo "Could not run git pull to obtain your submission. "; cat /tmp/git-error ; exit 1)
 
-sudo -u nobody rm -rf ${BASE}/work/*
-rm -rf ${BASE}/work/* 
+rm -rf ${BASE}/work/*
 cp -r ${STUDENT}/${assn} ${BASE}/work/${assn}
+chmod -R ug+rw ${BASE}/work/${assn}
 sudo /bin/chown -R nobody.${GGROUP} ${BASE}/work/*
 
 line=""
@@ -140,7 +140,7 @@ then
 		asnpassed=`grep :P ${course} | wc -l | tr -d' '`
 		v=`echo "scale=3; $asnpassed / $assntotal" | bc`
 		cname=`basename $course | cut -f2 -d"."`
-		echo "$v" > /git-remote/grade.${cname}
+		echo "$v" > /grader/grade.${cname}
 	    fi
 	done
         
@@ -162,8 +162,8 @@ then
             fi
 	fi
     fi
-    echo "(cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null"
-    2>/dev/null  >/dev/null
+#    echo "(cd ${STUDENT} &&  git push) 2>/dev/null  >/dev/null"
+
     (cd ${STUDENT} &&  git push) 
     exit 0
 else
