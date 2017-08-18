@@ -53,7 +53,7 @@ fi
 
 rm -rf ${BASE}/work/*
 cp -r ${STUDENT}/${assn} ${BASE}/work/${assn}
-chmod -R ug+rw ${BASE}/work/${assn}
+chmod -R ug+rwX ${BASE}/work/${assn}
 sudo /bin/chown -R nobody.${GGROUP} ${BASE}/work/*
 
 line=""
@@ -66,7 +66,7 @@ do
     let fd=${fd}+1
 done
 echo " - running grader"
-${BIN}/mpipe ${BASE}/tmp/x $line  >${BASE}/tmp/out
+(cd ${STUDENT}/${assn};${BIN}/mpipe ${BASE}/tmp/x $line)  >${BASE}/tmp/out
 x="$?"
 if [ "$x" == 0 ]
 then
