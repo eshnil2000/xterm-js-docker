@@ -129,7 +129,7 @@ then
     echo "Done"
     echo ""
 fi
-    echo "Welcome to the Programming Practice Environment!"
+    echo "Welcome to the  Practice Programming Environment!"
 
 cd 
 

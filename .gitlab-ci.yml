@@ -34,6 +34,7 @@ deploy_staging1:
     - sudo cp -R template-student-git-remote/* /srv/persistent-data/git-remotes/monitoring-user/
     - sudo chown -R azureuser:azureuser /srv/persistent-data/git-remotes/monitoring-user/
     - sudo chmod -R uog+rwX /srv/persistent-data/git-remotes/monitoring-user/
+    - sudo chown 1001:1001 /srv/persistent-data/git-remotes/monitoring-user/passed.*
     - echo "Deploy to staging server"
     - ./run-test-instance
   environment:
