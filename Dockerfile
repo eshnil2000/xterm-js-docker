@@ -10,6 +10,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     curl \
     wget \
     bzip2 \
+    bc \
     ca-certificates \
     sudo \
     locales \

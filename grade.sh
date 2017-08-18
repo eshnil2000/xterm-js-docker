@@ -118,11 +118,7 @@ then
             ;;
     esac
     passing=`echo $assninfo | cut -f2 -d":"`
-    whoami
-    echo ~/.gitconfig
-    cat ~/.gitconfig
-    echo "    (cd ${STUDENT} &&  git add ${assn}/grade.txt && git commit -m graded)"
-    (cd ${STUDENT} &&  git add ${assn}/grade.txt && git commit -m graded)
+    (cd ${STUDENT} &&  git add ${assn}/grade.txt && git commit -m graded) 2>/dev/null > /dev/null
     # (1) We'll write the grade to /grader/grades.txt
     echo "${assn}:${fgr}" >>/grader/grades.txt
     if [ "$ngr" -ge "$passing" ]
@@ -166,9 +162,9 @@ then
             fi
 	fi
     fi
-    echo "(cd ${STUDENT} &&  git push)"
+#    echo "(cd ${STUDENT} &&  git push)"
 
-    (cd ${STUDENT} &&  git push) 
+    (cd ${STUDENT} &&  git push)  2>/dev/null > /dev/null
     exit 0
 else
     echo "Grader failed with status $x"

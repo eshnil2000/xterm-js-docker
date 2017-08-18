@@ -121,7 +121,7 @@ then
     echo "This seems to be your first time here."
     echo "I'm setting up your first assignment..."
     name="Coursera Learner"
-    emaail="nobody@nowhere.nul"
+    email="nobody@nowhere.nul"
     git config --global user.email "$email"
     git config --global user.name "$name"
     git config --global push.default simple
