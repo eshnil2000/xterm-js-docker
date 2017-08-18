@@ -1,8 +1,5 @@
 #!/bin/bash
 ulimit -f 25000
-whoami
-pwd
-ls -l
 CLANGBIN=/usr/local/clang/bin
 FAILED="1"
 PASSED="0"

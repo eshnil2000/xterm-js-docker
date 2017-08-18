@@ -161,6 +161,11 @@ then
 		echo "You should continue watching videos until you have watched:"
 		echo "  $mesg  "
 		echo "which covers the material you will need to do $next"
+		echo "${BASE}/dist"
+		ls -l ${BASE}/dist
+		echo "${BASE}/dist/${next}"
+		ls -l ${BASE}/dist/${next}
+		
 		cp -r ${BASE}/dist/${next} ${STUDENT}/${next}
 		(cd ${STUDENT} &&  git add ${STUDENT}/${next} && git commit -m 'Released assignment') 2>/dev/null  >/dev/null
             fi
