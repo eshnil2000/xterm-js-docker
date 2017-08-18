@@ -194,6 +194,11 @@ RUN chown grader.grader /usr/local/bin/grade && \
     chmod 500 $GR_HOME/data && \
     chmod 400 $GR_HOME/data/*
 
+RUN mkdir -p $GR_HOME/dist
+COPY assn/ ${GR_HOME}/dist/
+RUN chown -R grader.grader ${GR_HOME}/dist
+RUN chmod -R og-rwx ${GR_HOME}/dist
+
 # Configure container startup
 ENTRYPOINT ["tini", "--"]
 CMD ["start-xtermjs.sh"]

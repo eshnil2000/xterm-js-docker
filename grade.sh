@@ -153,7 +153,7 @@ then
         else
             #release $next
             echo "- Releasing ${next}"
-	    mesg=`grep "$next" ${DATA} | cut -f4 -d"," `
+	    mesg=`grep "$next" ${DATA} | cut -f4 -d":" `
 	    if [ "$mesg" != "" ]
 	    then
 		echo "You should continue watching videos until you have watched:"
