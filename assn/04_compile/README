@@ -1,0 +1,18 @@
+For this assignment, you will be practicing writing, compiling, and
+running code.  You should write a C file with a main function
+that uses the printf function to print the message
+
+Hello World
+
+[be sure to include a newline!]
+
+Your program should return 0 to indicate that it was successful
+(the return value of main indicates success [0] or failure [anything else]).
+
+Also, you will need to put
+
+#include <stdio.h>
+
+at the start of your code. This includes the header file which tells
+the compiler about printf.  You will learn more about header files
+in an upcoming lesson!
