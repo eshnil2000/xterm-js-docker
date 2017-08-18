@@ -129,7 +129,7 @@ then
         echo ""
 	# (2) We'll track some stuff in /grader in case we have to
 	# give just one "overall" grade for the course.
-	for course in /grader/passed.*
+	for course in /git-remote/passed.*
 	do
 	    cline=`grep ${assn}: ${course}`
 	    if [ "$cline" != "" ]
@@ -137,12 +137,9 @@ then
 		(grep -v "${assn}: ${course}" ; echo "${assn}:P") > ${course}
 		asntotal=`wc -l ${course} | cut -f1 -d" " |tr -d ' '`
 		asnpassed=`grep :P ${course} | wc -l | tr -d' '`
-		if [ "$asnpassed" == "$asntotal" ]
-		then
-		    cname=`basename $course | cut -f2 -d"."`
-		    echo "1.0" > /grader/grade.${cname}
-		fi
-		break
+		v=`echo "scale=3; $asnpassed / $assntotal" | bc`
+		cname=`basename $course | cut -f2 -d"."`
+		echo "$v" > /git-remote/grade.${cname}
 	    fi
 	done
         

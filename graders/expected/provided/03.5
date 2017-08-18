@@ -1,0 +1,8 @@
+int main(int argc, char ** argv) {
+  int numStars;
+  int x = atoi(argv[1]);
+  printf("Here is a triangle with height %d\n", x);
+  numStars = printTriangle(x);
+  printf("That triangle had %d total stars\n", numStars);
+  return EXIT_SUCCESS;
+}
