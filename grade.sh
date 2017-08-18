@@ -138,7 +138,8 @@ then
 	    then
 		echo "1-"
 		cat $course
-		(grep -v "${assn}: ${course}" ; echo "${assn}:P") > /tmp/temp-grade-course
+		grep -v "${assn}:" "${course}" > /tmp/temp-grade-course
+		echo "${assn}:P" >> /tmp/temp-grade-course
 		mv /tmp/temp-grade-course ${course}
 		echo "2-"
 		cat $course
