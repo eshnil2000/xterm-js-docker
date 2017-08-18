@@ -116,10 +116,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ ! -d learn2prog ]
+if [ ! -d ~/learn2prog ]
 then
-    git clone /git-remote/learn2prog
+    echo "This seems to be your first time here."
+    echo "I'm setting up your first assignment..."
+    name="Coursera Learner"
+    email="nobody@nowhere.nul"
+    git config --global user.email "$email"
+    git config --global user.name "$name"
+    git config --global push.default simple
+    cd ~ && git clone /git-remote/learn2prog >/dev/null 2>/dev/null
+    echo "Done"
+    echo ""
 fi
+    echo "Welcome to the  Practice Programming Environment!"
 
 cd 
 

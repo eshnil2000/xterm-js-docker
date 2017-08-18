@@ -21,9 +21,9 @@ Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b
 root	ALL=(ALL:ALL) ALL
 
 
-student ALL = (grader) NOPASSWD: /usr/local/bin/grade.sh
+student ALL = (grader) NOPASSWD: /usr/local/bin/grade.sh , (grader) NOPASSWD: /usr/local/bin/fast-forward.sh
 
-grader ALL = (student:grader) NOPASSWD: /usr/local/bin/check_git_status.sh , (nobody)  NOPASSWD: /usr/local/bin/rungrader.sh ,  (root)    NOPASSWD: /bin/chown -R nobody.grader /home/grader/work
+grader ALL = (student:grader) NOPASSWD: /usr/local/bin/check_git_status.sh , (nobody)  NOPASSWD: /usr/local/bin/rungrader.sh ,  (root)    NOPASSWD: /bin/chown -R nobody.grader /graderhome/work/* , (nobody) NOPASSWD: /bin/rm -rf /graderhome/work/*
 # See sudoers(5) for more information on "#include" directives:
 
 #includedir /etc/sudoers.d

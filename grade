@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo -u grader /usr/local/bin/grade.sh $@
+sudo -H -u grader /usr/local/bin/grade.sh $@
