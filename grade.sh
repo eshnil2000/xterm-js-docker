@@ -52,6 +52,7 @@ fi
 (cd ${STUDENT} && git pull) 2>/tmp/git-error >/dev/null || (echo "Could not run git pull to obtain your submission. "; cat /tmp/git-error ; exit 1)
 
 sudo -u nobody rm -rf ${BASE}/work/*
+rm -rf ${BASE}/work/* 
 cp -r ${STUDENT}/${assn} ${BASE}/work/${assn}
 sudo /bin/chown -R nobody.${GGROUP} ${BASE}/work/*
 
