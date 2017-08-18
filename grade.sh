@@ -66,7 +66,7 @@ do
     let fd=${fd}+1
 done
 echo " - running grader"
-(cd ${STUDENT}/${assn};${BIN}/mpipe ${BASE}/tmp/x $line)  >${BASE}/tmp/out
+(cd ${BASE}/work/${assn};${BIN}/mpipe ${BASE}/tmp/x $line)  >${BASE}/tmp/out
 x="$?"
 if [ "$x" == 0 ]
 then
