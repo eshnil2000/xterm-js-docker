@@ -76,7 +76,7 @@ then
     mv ${BASE}/tmp/out ${STUDENT}/${assn}/grade.txt
     rm -rf ${BASE}/tmp/*
     chown ${GUSER}.${GGROUP} ${STUDENT}/${assn}/grade.txt
-    gr=`grep "Overall Grade: " ${STUDENT}/${assn}/grade.txt | cut -f2 -d":" |tr -d ' '`
+    gr=`grep "Overall Grade: " ${STUDENT}/${assn}/grade.txt | cut -f2 -d":" | tr -d ' '`
     if [ "$gr" == "" ]
     then
         echo "Strangely, I can't seem to find your grade in the grade report"
@@ -117,6 +117,7 @@ then
             fgr=`echo "scale=4; $grade / 100" | bc`
             ;;
     esac
+    newassn=0
     passing=`echo $assninfo | cut -f2 -d":"`
     (cd ${STUDENT} &&  git add ${assn}/grade.txt && git commit -m graded) 2>/dev/null > /dev/null
     # (1) We'll write the grade to /grader/grades.txt
@@ -135,9 +136,10 @@ then
 	    cline=`grep ${assn}: ${course}`
 	    if [ "$cline" != "" ]
 	    then
-		(grep -v "${assn}: ${course}" ; echo "${assn}:P") > ${course}
-		asntotal=`wc -l ${course} | cut -f1 -d" " |tr -d ' '`
-		asnpassed=`grep :P ${course} | wc -l | tr -d' '`
+		(grep -v "${assn}: ${course}" ; echo "${assn}:P") > /tmp/temp-grade-course
+		mv /tmp/temp-grade/course ${course}
+		asntotal=`wc -l ${course} | cut -f1 -d" " | tr -d ' '`
+		asnpassed=`grep :P ${course} | wc -l | tr -d ' '`
 		v=`echo "scale=3; $asnpassed / $assntotal" | bc`
 		cname=`basename $course | cut -f2 -d"."`
 		echo "$v" > /grader/grade.${cname}
@@ -150,7 +152,8 @@ then
             echo "You already have ${next}, so nothing new to release"
         else
             #release $next
-            echo "- Releasing ${next}"
+	    newassn=1
+	    echo "- Releasing ${next}"
 	    mesg=`grep "$next" ${DATA} | cut -f4 -d":" `
 	    if [ "$mesg" != "" ]
 	    then
@@ -165,6 +168,12 @@ then
 #    echo "(cd ${STUDENT} &&  git push)"
 
     (cd ${STUDENT} &&  git push)  2>/dev/null > /dev/null
+    echo ""
+    echo "Run 'git pull' to get your grade report"
+    if [ "$newassn" == "1" ]
+    then
+	echo "(and new assignments)"
+    fi
     exit 0
 else
     echo "Grader failed with status $x"
