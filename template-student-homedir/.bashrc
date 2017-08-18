@@ -118,15 +118,18 @@ fi
 
 if [ ! -d ~/learn2prog ]
 then
-    echo "What is your name?"
-    read name
-    echo "What is your email?"
-    read email
+    echo "This seems to be your first time here."
+    echo "I'm setting up your first assignment..."
+    name="Coursera Learner"
+    emaail="nobody@nowhere.nul"
     git config --global user.email "$email"
     git config --global user.name "$name"
     git config --global push.default simple
-    cd ~ && git clone /git-remote/learn2prog
+    cd ~ && git clone /git-remote/learn2prog >/dev/null 2>/dev/null
+    echo "Done"
+    echo ""
 fi
+    echo "Welcome to the Programming Practice Environment!"
 
 cd 
 
