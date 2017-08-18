@@ -52,6 +52,8 @@ deploy_production1:
   script:
     - echo "Building the production app"
     - ./build-production
+    - echo "Copy the git-remote and homedir templates into place for all users" 
+    - ./copy-gitremote-and-homedir
     - echo "Deploy to production server"
     - cd /srv/persistent-data/docker-scripts; ./run-everything
   environment:
