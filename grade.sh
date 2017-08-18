@@ -136,12 +136,20 @@ then
 	    cline=`grep ${assn}: ${course}`
 	    if [ "$cline" != "" ]
 	    then
+		echo "1-"
+		cat $course
 		(grep -v "${assn}: ${course}" ; echo "${assn}:P") > /tmp/temp-grade-course
-		mv /tmp/temp-grade/course ${course}
+		mv /tmp/temp-grade-course ${course}
+		echo "2-"
+		cat $course
 		asntotal=`wc -l ${course} | cut -f1 -d" " | tr -d ' '`
+		echo "$asntotal"
 		asnpassed=`grep :P ${course} | wc -l | tr -d ' '`
+		echo "$asnpassed"
 		v=`echo "scale=3; $asnpassed / $assntotal" | bc`
+		echo "$v"
 		cname=`basename $course | cut -f2 -d"."`
+		echo "$cname"
 		echo "$v" > /grader/grade.${cname}
 	    fi
 	done
