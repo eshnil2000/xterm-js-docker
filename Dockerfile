@@ -1,3 +1,4 @@
+
 FROM ubuntu:16.04
 
 MAINTAINER Mark McCahill "mark.mccahill@duke.edu"
@@ -199,7 +200,8 @@ RUN mkdir -p $GR_HOME/dist
 COPY assn/ ${GR_HOME}/dist/
 RUN chown -R grader.grader ${GR_HOME}/dist
 RUN chmod -R og-rwx ${GR_HOME}/dist
-
+RUN mkdir -p /usr/local/clang/bin/
+RUN ln -s `which clang-query` /usr/local/clang/bin/clang-query
 # Configure container startup
 ENTRYPOINT ["tini", "--"]
 CMD ["start-xtermjs.sh"]
