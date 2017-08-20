@@ -1,7 +1,6 @@
 #!/bin/bash
 next="$1"
-
-BASE=/home/grader
+BASE=/graderhome
 STUDENT=${BASE}/student/learn2prog
 
 if [ -d ${STUDENT}/${next} ]
@@ -15,7 +14,10 @@ else
 	   echo "each one before proceeding to the next.  Howerver, we will"
 	   echo "release ${next} as you requested."
 	   cp -r ${BASE}/dist/${next} ${STUDENT}/${next}
-	   (cd ${STUDENT} &&  git add ${STUDENT}/${next} && git commit -m 'Released assignment') 2>/dev/null  >/dev/null
+	   (cd ${STUDENT} &&  \
+		   git add ${STUDENT}/${next} && \
+		   git commit -m 'Released assignment' && \
+	           git push) 2>/dev/null  >/dev/null
     else
 	echo "$next does not appear to be a valid assignment"
     fi
