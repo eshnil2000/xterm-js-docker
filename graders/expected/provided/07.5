@@ -1,0 +1,21 @@
+//$startAge $initial $workSave $workRor $workMonths $retireSpend $retireRor $retireMonths
+int main(int argc, char ** argv) {
+  int startAge= atoi(argv[1]);
+  double initial = atof(argv[2]);
+  double workSave = atof(argv[3]);
+  double workRor = atof(argv[4]); //already in per-month
+  int workMonths = atoi(argv[5]);
+  double retireSpend = atof(argv[6]);
+  double retireRor = atof(argv[7]);
+  int retireMonths = atoi(argv[8]);
+  retire_info w;
+  w.months = workMonths;
+  w.contribution = workSave;
+  w.rate_of_return = workRor;
+  retire_info r;
+  r.months = retireMonths;
+  r.contribution = retireSpend;
+  r.rate_of_return = retireRor;
+  retirement(startAge, initial, w, r);
+  return EXIT_SUCCESS;
+}

@@ -1,0 +1,16 @@
+//$rec1_x $rec1_y $rec1_width $rec1_height $rec2_x $rec2_y $rec2_width $rec2_height
+int main(int argc, char ** argv) {
+  rectangle r1, r2;
+  r1.x = atoi(argv[1]);
+  r1.y = atoi(argv[2]);
+  r1.width = atoi(argv[3]);
+  r1.height = atoi(argv[4]);
+  r2.x = atoi(argv[5]);
+  r2.y = atoi(argv[6]);
+  r2.width = atoi(argv[7]);
+  r2.height = atoi(argv[8]);
+  rectangle i = intersection(r1, r2);
+  printf("intersection(r1,r2): ");
+  printRectangle(i);
+  return EXIT_SUCCESS;
+}

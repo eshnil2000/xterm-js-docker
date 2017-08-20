@@ -1,7 +1,7 @@
 
 ;; Uncomment this next line if you want line numbers on the left side
 ;(global-linum-mode 1)
-
+(setq undo-limit 80000)
 (global-set-key "\C-c\C-v" 'compile)
 (setq line-number-mode t)
 (setq column-number-mode t)

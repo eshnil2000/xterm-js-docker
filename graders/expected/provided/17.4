@@ -1,0 +1,9 @@
+#include <stdlib.h>
+#include <stdio.h>
+unsigned power(unsigned x, unsigned y);
+int main(int argc, char** argv) {
+  unsigned x = atoi(argv[1]);
+  unsigned y = atoi(argv[2]);
+  printf("%u^%u = %u\n", x, y, power(x,y));
+  return EXIT_SUCCESS;
+}
