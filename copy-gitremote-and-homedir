@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# get the server HOSTID
+#
+
+INPUT=/srv/persistent-data/docker-scripts/hostID
+OLDIFS=$IFS
+IFS=,
+[ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
+while read hostID
+do
+  MYHOSTID=$hostID
+  echo $hostID:
+done < $INPUT
+IFS=$OLDIFS
+
+#
+# loop through the regular user mappings
+#
+INPUT=/srv/persistent-data/docker-scripts/mapping-$MYHOSTID
+OLDIFS=$IFS
+IFS=,
+[ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
+while read usernum port pw
+do
+  echo  user$usernum
+  # don't blow away the grades unless we really mean it
+###  sudo rm -rf /srv/persistent-data/gradedirs/grader$usernum/*
+  sudo rm -rf /srv/persistent-data/homedirs/user$usernum/*
+  sudo cp -R template-student-homedir/* /srv/persistent-data/homedirs/user$usernum/
+  sudo cp -R template-student-homedir/.bashrc /srv/persistent-data/homedirs/user$usernum/
+  sudo chown -R azureuser:azureuser /srv/persistent-data/homedirs/user$usernum/
+  sudo rm -rf /srv/persistent-data/git-remotes/user$usernum/*
+  sudo cp -R template-student-git-remote/* /srv/persistent-data/git-remotes/user$usernum/
+  sudo chown -R azureuser:azureuser /srv/persistent-data/git-remotes/user$usernum/
+  sudo chmod -R uog+rwX /srv/persistent-data/git-remotes/user$usernum/
+  sudo chown 1001:1001 /srv/persistent-data/git-remotes/user$usernum/passed.*
+  sudo chmod 600 /srv/persistent-data/git-remotes/user$usernum/passed.*
+  
+done < $INPUT
+IFS=$OLDIFS
+
+
+  
