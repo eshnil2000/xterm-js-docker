@@ -2,6 +2,7 @@
 next="$1"
 BASE=/graderhome
 STUDENT=${BASE}/student/learn2prog
+REMOTE=/git-remote/learn2prog
 if [ ! -d $STUDENT ]
 then
     (cd ${BASE}/student && git clone $REMOTE) 2>/tmp/git-error > /dev/null || ("Echo could not read your git repository: "; cat /tmp/git-error; exit 1)
