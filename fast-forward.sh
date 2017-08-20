@@ -2,6 +2,11 @@
 next="$1"
 BASE=/graderhome
 STUDENT=${BASE}/student/learn2prog
+if [ ! -d $STUDENT ]
+then
+    (cd ${BASE}/student && git clone $REMOTE) 2>/tmp/git-error > /dev/null || ("Echo could not read your git repository: "; cat /tmp/git-error; exit 1)
+fi
+(cd ${STUDENT} && git pull) 2>/tmp/git-error >/dev/null || (echo "Could not run git pull to ensure I'm up to date with your code. "; cat /tmp/git-error ; exit 1)
 
 if [ -d ${STUDENT}/${next} ]
 then
