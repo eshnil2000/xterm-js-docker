@@ -1,25 +1,14 @@
-Welcome to your programming environment.
+Welcome to the Practice Programming Environment.
 
-You will be using git to store and submit your code.
-You'll learn more about git as you go, but for now, run the command
+This is where
+This is your directory for the assignments in this
+specialization. To do the first assignment:
 
-git pull
+cd 00_hello
 
-This will get the most recent code from the remote repository,
-which will include your first assignment.
-
-After you do that, if you run ls, you should see a directory called
-
-00_hello
-
-
-cd into that directory (cd 00_hello) and run ls there.  You should
-see a file called README which has the instructions for the first assignment.
-
-You can read the instructions by either running
-
-cat README
-
-or
-
-emacs README
+There, you will find a README with instructions.
+Once you do them and pass that assignment,
+the Practice Programming Environment will
+automatically give you the next assignment.
+You should then continue readings and videos
+in Coursera until you are ready for that assignment.
