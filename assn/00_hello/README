@@ -8,7 +8,8 @@ hello
 
 
 (1) Use emacs to open/create a file called hello.txt
-     o Hit C-x C-f (Control x, then Control f)
+     o Type C-x C-f (Control x, then Control f) [which opens
+       a new file]
      o type hello.txt  [then hit enter]
      o Split the screen (C-x 2) and then change one half to
        show this buffer (C-x b , should say default: README, if so hit
