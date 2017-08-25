@@ -155,7 +155,7 @@ then
             #release $next
 	    newassn=1
 	    echo "- Releasing ${next}"
-	    mesg=`grep "^$next" ${DATA} | cut -f4 -d":" `
+	    mesg=`grep "^$next" ${DATA} | cut -f4- -d":" `
 	    if [ "$mesg" != "" ]
 	    then
 		echo "You should continue watching videos until you have watched:"
