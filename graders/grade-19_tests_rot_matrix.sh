@@ -27,17 +27,20 @@ run_test() {
 
 for i in /usr/local/ece551/rot_matrix/rotateMatrix*
 do
-    echo "Checking `basename $i`"
-    run_test $i tests.txt
-    x="$?"
-    if [ "$x" != "0" ]
-    then
-	echo "***Your tests failed to show that `basename $i` was broken!"
-	passFailGradeFromStatus $FAILED
-	exit 0
-    else
-	echo "Your tests identified the problem with `basename $i`"
-    fi
+   if [ "$i" != "/usr/local/ece551/rot_matrix/rotateMatrix" ]
+       then
+	   echo "Checking `basename $i`"
+	   run_test $i tests.txt
+	   x="$?"
+	   if [ "$x" != "0" ]
+	   then
+	       echo "***Your tests failed to show that `basename $i` was broken!"
+	       passFailGradeFromStatus $FAILED
+	       exit 0
+	   else
+	       echo "Your tests identified the problem with `basename $i`"
+	   fi
+   fi
 done
 
 echo "Your tests identified problems with all broken programs"

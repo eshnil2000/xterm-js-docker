@@ -1,4 +1,10 @@
-40_getc:f
-41_gets:F
-42_malloc:F
-43_getline:F
+18_break_encr:F
+19_tests_rot_matrix:F
+20_rot_matrix:F
+21_fix_vg_encr:F
+22_sort_lines:F
+23_minesweeper:F
+24_kvs:F
+25_outname:F
+26_counts:F
+27_put_together:F

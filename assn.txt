@@ -1,6 +1,28 @@
 00_hello:90:01_apple:
-01_apple:90:02_code1:1.4.30
-02_code1:90:03_code2:
+01_apple:90:02_code1:Week 1 Tools Video: Grading
+02_code1:90:03_code2:Week 1 Tools
 03_code2:90:04_compile:
-04_compile:90:05_squares:2.2.10
-05_squares:90:06_:2.2.50
+04_compile:90:05_squares:Week 2 First Examples Video: Hello World
+05_squares:90:06_rect:Week 2 First Examples Video: Translating isPrime to Code
+06_rect:90:07_retirement:
+07_retirement:90:08_testing:
+08_testing:90:09_testing2:
+09_testing2:90:10_gdb:
+10_gdb:90:c2prj_cards:
+11_array_max:90:12_tests_subseq:
+12_tests_subseq:90:13_subseq:
+13_subseq:90:14_reverse_str:
+14_reverse_str:90:15_bits_arr:
+15_bits_arr:90:16_tests_power:
+16_test_power:90:17_power_rec:
+17_power_rec:90:c3prj_deck:
+18_break_encr:90:19_tests_rot_matrix:
+19_tests_rot_matrix:90:20_rot_matrix:
+20_rot_matrix:90:21_fix_vg_encr:
+21_fix_vg_encr:90:22_sort_lines:
+22_sort_lines:90:23_minesweeper:
+23_minesweeper:90:24_kvs:
+24_kvs:90:25_outname:
+25_outname:90:26_counts:
+26_counts:90:27_put_together:
+27_put_together:90:c4prj_finish:
