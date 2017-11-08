@@ -3,7 +3,7 @@ ulimit -f 25000
 CLANGBIN=/usr/local/clang/bin
 FAILED="1"
 PASSED="0"
-expected="/home/ece551db/graderbase/graders/expected"
+expected="/graderhome/graders/expected"
 defaultDiffOpts="-Biw --suppress-common-lines --old-line-format=Line_%dn_did_not_match%c'\012' --new-line-format= --unchanged-line-format= "
 REPORT_DETAILED_DIFF=0
 RUNTIMEOUT=30

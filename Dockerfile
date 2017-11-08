@@ -95,6 +95,10 @@ RUN git config --global user.email "invalid@nowhere.com" && \
     git config --global user.name "Learn 2 Program Grader"
 
 USER root
+COPY l2p /usr/local/l2p/
+RUN chown -R root:root /usr/local/l2p
+RUN chmod -R og-w /usr/local/l2p && \
+    chmod -R og+rX /usr/local/l2p
 RUN chown -R $NB_USER:users /home/$NB_USER && \
     chown -R $GR_USER:grader $GR_HOME && \
     chmod 755 $GR_HOME && \

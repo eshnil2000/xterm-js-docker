@@ -3,5 +3,8 @@
 13_subseq:F
 14_reverse_str:F
 15_bits_arr:F
-16_test_power:F
+16_tests_power:F
 17_power_rec:F
+18_rot_matrix:F
+c3prj1_deck:F
+c3prj2_eval:F

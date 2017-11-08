@@ -1,18 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "counts.h"
-
-int main(int argc, char ** argv) {
-  char * testData[atoi(argv[1])];
-  for (int i = 0; i < atoi(argv[1]); ++i) {
-    testData[i] = argv[2 + i];
-  }                            
-  counts_t * testCounts= createCounts();
-  for(int i = 0; i < atoi(argv[1]); i++) {
-    addCount(testCounts,testData[i]);
-  }
-  printCounts(testCounts, stdout);
-  freeCounts(testCounts);
-  return EXIT_SUCCESS;
-}
+apple=red
+banana=yellow
+orange=orange
+grapes=purple
+carrot=orange
+eggplant=purple

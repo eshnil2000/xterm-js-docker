@@ -1,28 +1,37 @@
 00_hello:90:01_apple:
-01_apple:90:02_code1:Week 1 Tools Video: Grading
-02_code1:90:03_code2:Week 1 Tools
+01_apple:90:02_code1:Week 1 Tools / Video: Editing Files with Emacs
+02_code1:90:03_code2:Week 1 Review / Reading: How Assignments Work in This Course
 03_code2:90:04_compile:
-04_compile:90:05_squares:Week 2 First Examples Video: Hello World
-05_squares:90:06_rect:Week 2 First Examples Video: Translating isPrime to Code
-06_rect:90:07_retirement:
+04_compile:90:05_squares:Week 2 First Examples / Video: Hello World
+05_squares:90:06_rect:Week 2 First Examples / Video: Comparing Output with Diff
+06_rect:90:07_retirement:Week 2 Review
 07_retirement:90:08_testing:
-08_testing:90:09_testing2:
+08_testing:90:09_testing2:Week 3 Testing / Practice Quiz: Testing
 09_testing2:90:10_gdb:
-10_gdb:90:c2prj_cards:
+10_gdb:90:c2prj1_cards:Week 3 Review
+c2prj1_cards:90:c2prj2_testing:
+c2prj2_testing:90:11_array_max:
 11_array_max:90:12_tests_subseq:
 12_tests_subseq:90:13_subseq:
 13_subseq:90:14_reverse_str:
 14_reverse_str:90:15_bits_arr:
 15_bits_arr:90:16_tests_power:
-16_test_power:90:17_power_rec:
-17_power_rec:90:c3prj_deck:
-18_break_encr:90:19_tests_rot_matrix:
-19_tests_rot_matrix:90:20_rot_matrix:
-20_rot_matrix:90:21_fix_vg_encr:
-21_fix_vg_encr:90:22_sort_lines:
-22_sort_lines:90:23_minesweeper:
-23_minesweeper:90:24_kvs:
-24_kvs:90:25_outname:
-25_outname:90:26_counts:
-26_counts:90:27_put_together:
-27_put_together:90:c4prj_finish:
+16_tests_power:90:17_power_rec:
+17_power_rec:90:18_rot_matrix:
+18_rot_matrix:90:c3prj1_deck:
+c3prj1_deck:90:c3prj2_eval:
+c3prj2_eval:90:19_break_encr:
+19_break_encr:90:20_tests_matrix_input:
+20_tests_matrix_input:90:21_matrix_input:
+21_matrix_input:90:22_fix_vg_encr:
+22_fix_vg_encr:90:23_outname:
+23_outname:90:24_sort_lines:
+24_sort_lines:90:25_minesweeper:
+25_minesweeper:90:26_kvs:
+26_kvs:90:27_counts:
+27_counts:90:28_put_together:
+28_put_together:90:c4prj1_deck:
+c4prj1_deck:90:c4prj2_input:
+c4prj2_input:90:c4prj3_finish:
+c4prj3_finish:90:and_beyond:
+and_beyond:9999::

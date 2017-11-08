@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in /usr/local/ece551/subseq/subseq*.o
+for i in /usr/local/l2p/subseq/subseq*.o
 do
     test=`basename $i | sed 's/subseq//' | sed 's/.o//'`
     if [ "$test"  == "" ]

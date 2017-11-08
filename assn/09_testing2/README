@@ -4,7 +4,7 @@ with more broken implementations.
 
 You can find the correct implementation of the program at
 
-/usr/local/ece551/match5/correct-match5
+/usr/local/l2p/match5/correct-match5
 
 This program determines who wins a very simple "card game".  This "game"
 is played with 5 "cards" per player and 2 players.  A "card" in this
@@ -21,16 +21,16 @@ If you run the correct implementation, you can see the correct behavior:
 
 As some examples:
 
-$ /usr/local/ece551/match5/correct-match5 aaaaa bbbbb
+$ /usr/local/l2p/match5/correct-match5 aaaaa bbbbb
 Both hands tie: each has five of a kind
 
-$ /usr/local/ece551/match5/correct-match5 aaaaa bbbbc
+$ /usr/local/l2p/match5/correct-match5 aaaaa bbbbc
 Hand 1's five of a kind beats Hand 2's four of a kind
 
-$ /usr/local/ece551/match5/correct-match5 aaabb bbbbc
+$ /usr/local/l2p/match5/correct-match5 aaabb bbbbc
 Hand 1's three of a kind loses to Hand 2's four of a kind
 
-If you look in /usr/local/ece551/match5, you will see that there are 296 broken
+If you look in /usr/local/l2p/match5, you will see that there are 296 broken
 implementations.   Note that you do NOT need to come up with 296 test cases---you
 may have one test case which shows that several of these implementations
 are broken.
