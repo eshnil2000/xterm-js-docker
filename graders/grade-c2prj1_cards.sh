@@ -1,4 +1,4 @@
-
+cat /dev/fd/6 > tester.o
 do1test() {
     echo "$1"
     ./tester $2

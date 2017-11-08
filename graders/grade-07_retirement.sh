@@ -96,7 +96,7 @@ for startAge in 240 345
 			    let rm2=${RANDOM}%40+370
 			    for retireMonths in ${rm1} ${rm2}
 			    do
-				printf " %3d | %8.2f | %7.2f | %8.7f |   %3d  | %7.2f | %8.7f |   %3d  | " "$startAge" "$initial" "$workSave" "$workRor" "$workMonths" "$retireSpend" "$retireRor" "$retireMonths | "
+				printf " %3d | %8.2f | %7.2f | %8.7f |   %3d  | %7.2f | %8.7f |   %3d  | " "$startAge" "$initial" "$workSave" "$workRor" "$workMonths" "$retireSpend" "$retireRor" "$retireMonths"
 				# echo "Testing with"
 				# echo "  startAge               $startAge"
 				# echo "  initial                $initial"
