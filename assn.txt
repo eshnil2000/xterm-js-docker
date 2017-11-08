@@ -1,5 +1,4 @@
-00_hello:90:01_apple:
-01_apple:90:02_code1:Week 1 Tools / Video: Editing Files with Emacs
+01_apple:90:02_code1:Week 1 Tools / Reading: Emacs
 02_code1:90:03_code2:Week 1 Review / Reading: How Assignments Work in This Course
 03_code2:90:04_compile:
 04_compile:90:05_squares:Week 2 First Examples / Video: Hello World
@@ -9,28 +8,34 @@
 08_testing:90:09_testing2:Week 3 Testing / Practice Quiz: Testing
 09_testing2:90:10_gdb:
 10_gdb:90:c2prj1_cards:Week 3 Review
-c2prj1_cards:90:c2prj2_testing:
-c2prj2_testing:90:11_array_max:
-11_array_max:90:12_tests_subseq:
-12_tests_subseq:90:13_subseq:
-13_subseq:90:14_reverse_str:
-14_reverse_str:90:15_bits_arr:
-15_bits_arr:90:16_tests_power:
-16_tests_power:90:17_power_rec:
-17_power_rec:90:18_rot_matrix:
-18_rot_matrix:90:c3prj1_deck:
+c2prj1_cards:90:c2prj2_testing:Week 4 Project / Reading: Poker Project Roadmap
+c2prj2_testing:90:11_read_ptr1:Week 4 Project / Reading: Rules of Poker
+11_read_ptr1:90:12_read_ptr2:Week 1 Pointers / Video: Corrected Swap
+12_read_ptr2:90:13_read_arr1:Week 1 Pointers / Reading: Use Memory Checker Tools
+13_read_arr1:90:14_array_max:Week 2 Arrays / Reading: Writing Code with Arrays
+14_array_max:90:15_tests_subseq:
+15_tests_subseq:90:16_subseq:
+16_subseq:90:17_read_arr2:
+17_read_arr2:90:18_reverse_str:
+18_reverse_str:90:19_bits_arr:
+19_bits_arr:90:20_rot_matrix:
+20_rot_matrix:90:21_read_rec1:
+21_read_rec1:90:22_tests_power:
+22_tests_power:90:23_power_rec:
+23_power_rec:90:c3prj1_deck:
 c3prj1_deck:90:c3prj2_eval:
-c3prj2_eval:90:19_break_encr:
-19_break_encr:90:20_tests_matrix_input:
-20_tests_matrix_input:90:21_matrix_input:
-21_matrix_input:90:22_fix_vg_encr:
-22_fix_vg_encr:90:23_outname:
-23_outname:90:24_sort_lines:
-24_sort_lines:90:25_minesweeper:
-25_minesweeper:90:26_kvs:
-26_kvs:90:27_counts:
-27_counts:90:28_put_together:
-28_put_together:90:c4prj1_deck:
+c3prj2_eval:90:24_read_arr3:
+24_read_arr3:90:25_break_encr:
+25_break_encr:90:26_tests_matrix_input:
+26_tests_matrix_input:90:27_matrix_input:
+27_matrix_input:90:28_fix_vg_encr:
+28_fix_vg_encr:90:29_outname:
+29_outname:90:30_sort_lines:
+30_sort_lines:90:31_minesweeper:
+31_minesweeper:90:32_kvs:
+32_kvs:90:33_counts:
+33_counts:90:34_put_together:
+34_put_together:90:c4prj1_deck:
 c4prj1_deck:90:c4prj2_input:
 c4prj2_input:90:c4prj3_finish:
 c4prj3_finish:90:and_beyond:

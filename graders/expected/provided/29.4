@@ -1,0 +1,12 @@
+#include "outname.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+
+#define NUM_TESTS 3
+int main(int argc, char ** argv) {
+  char * outName = computeOutputFileName(argv[1]);
+  printf("'%s' => '%s'\n", argv[1], outName);
+  free(outName);
+  return EXIT_SUCCESS;
+}

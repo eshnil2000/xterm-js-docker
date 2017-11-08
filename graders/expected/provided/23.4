@@ -1,12 +1,9 @@
-#include "outname.h"
-#include <stdio.h>
 #include <stdlib.h>
-
-
-#define NUM_TESTS 3
-int main(int argc, char ** argv) {
-  char * outName = computeOutputFileName(argv[1]);
-  printf("'%s' => '%s'\n", argv[1], outName);
-  free(outName);
+#include <stdio.h>
+unsigned power(unsigned x, unsigned y);
+int main(int argc, char** argv) {
+  unsigned x = atoi(argv[1]);
+  unsigned y = atoi(argv[2]);
+  printf("%u^%u = %u\n", x, y, power(x,y));
   return EXIT_SUCCESS;
 }
