@@ -8,36 +8,21 @@ loadRefImpl /dev/fd/6
 
 #does the code compile?
 echo "Attempting to compile maxSeq.c "
-gcc -pedantic -Wall -Werror -std=gnu99  maxSeq.c  -o  maxSeq 2>&1
+gcc -c -pedantic -Wall -Werror -std=gnu99  maxSeq.c  -o  maxSeq.o 2>&1
 if [ "$?" != "0" ]
 then
  echo "The code did not compile!"
  overallGradeLetter 0
  exit 0
 fi
-grade=0
+grade=20
 testcase=1
-#check with provided testcase
-echo "#################################################"
-echo "testcase$testcase:"
-timeout -s 9 5 ./maxSeq 3</dev/null 4< /dev/null 5</dev/null 6</dev/null > temp.txt
-diffFile temp.txt /dev/fd/4
-if [ "$?" != "$PASSED" ]
-then
-    echo "Your output did not match what we expected."
-else 
-    echo "Your output matched what we expected"
-    let grade=${grade}+20
-fi
-
-#replace with test main(new testcase)
-echo "Removing your main() and replacing it with our own to run more tests..."
-clangStripFn "maxSeq.c" "main" "int" > temp.c
-cat temp.c /dev/fd/5 > temp2.c
-gcc -pedantic -Wall -Werror -std=gnu99 temp2.c -o maxSeq2 2>&1 
+cat /dev/fd/5 > temp2.c
+echo "Linking your object file with our test main"
+gcc -pedantic -Wall -Werror -std=gnu99 maxSeq.o temp2.c -o maxSeq2 2>&1 
 if [ "$?" != "0" ]
 then
-  echo "Could not replace your main function to test further"
+  echo "Could not link with test main"
   overallGradeLetter $grade
   exit 0
 fi
