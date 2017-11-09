@@ -1,52 +1,38 @@
-#4:22_testing_broken1 
-#5:22_testing_broken2 
-#6:22_testing_broken3 
-#7:22_testing_broken4 
+checkFileExists tests.txt
 
-grade=0
-fd_link=("/dev/fd/4" "/dev/fd/5" "/dev/fd/6" "/dev/fd/7")
-student_input=("input.1" "input.2" "input.3" "input.4")
-input=("1" "101" "s" "-1")
+if [ "$?" != "$PASSED" ]
+then
+    echo "Can't proceed without tests.txt"
+    passFailGradeFromStatus $FAILED
+    exit 0
+fi
 
-for ((i=0;i<4;++i))
+run_test(){
+    prog="$1"
+    testfile="$2"
+    IFS=$'\n'
+    IFS=" " correct=`/usr/local/l2p/poker/correct-eval $testfile 2>&1`
+    IFS=" " broken=`$prog $testfile 2>&1`
+    if [ "$broken" != "$correct" ]
+    then
+	return 0
+    fi
+    return 1
+}
+
+for i in /usr/local/l2p/poker/eval-*
 do
-		echo "#################################################"
-		echo "test ${student_input[$i]}:"
-		checkFileExists ${student_input[$i]}
-		if [ "$?" ==  $FAILED ]
-		then
-				continue
-		else
-				loadRefImpl ${fd_link[$i]}
-				runRefImpl `cat ${student_input[$i]}`  > student.txt
-				runRefImpl ${input[$i]}  > correct.txt
-				diffFile student.txt correct.txt
-				if [ "$?" = "$PASSED" ]
-				then 
-						echo "${student_input[$i]} passed"
-						let grade=${grade}+25
-				else
-						echo "${student_input[$i]} failed, your output did not match with the answer"
-				fi	
-		fi
-done		
+    run_test $i tests.txt
+    x="$?"
+    if [ "$x" != "0" ]
+    then
+	echo "Your test cases did not identify the problem with `basename $i`"
+	passFailGradeFromStatus $FAILED
+	exit 0
+    else
+	echo "Your test cases identified the problem with `basename $i`"
+    fi
+done
 
-case $grade in
-		25)
-				overallGrade "D"
-				;;
-		50)
-				overallGrade "C"
-				;;
-		75) 
-				overallGrade "B"
-				;;
-		100)
-				overallGrade "A"
-				;;
-		*)
-				overallGrade "F"
-				;;
-esac
-
+passFailGradeFromStatus $PASSED
 exit 0

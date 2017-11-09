@@ -1,32 +1,108 @@
-In this assignment, you will be black-box testing a few 
-broken implementations of "isPrime".  You will see
-that there are four broken implementations of isPrime:
+The second part of this course's poker project is to write
+test cases for what you will do in the next course.
 
-isPrime-broken1
-isPrime-broken2
-isPrime-broken3
-isPrime-broken4
+In particular, one of the things you will do in your
+project in Course 3 is write the code to evaluate
+which poker hand wins between two complete hands.
+This involves writing all the code to figure out
+what kind of hand (straight flush, full house, etc)
+is in a hand, and which 5 cards ultimately make it up.
+For example, if one hand is
 
-as well as a correct implementation:
+0c 0s 8s 7d 6d 6s 5c
 
-isPrime-correct
+and the other is
 
-All of these take one command line argument, which is the number
-to test for primality.  For example, you might run
+Js 0s 8s 7d 6s 5c 4c
 
-$ ./isPrime-correct  3
-3 is prime
-$ ./isPrime-correct 4
-4 is not prime
+your code in the next course will figure out that
+the first hand has two pairs (10s and 6s) with an 8
+as the tie-breaking card (called the "kicker"),
+and that the second hand has a straight (8 7 6 5 4).
+The straight beats the two pairs, so hand 2 wins.
 
-Your job is to find a test case for each broken implementation which
-shows that it is not correct---that is, where its behavior differs
-from that of isPrime-correct.
+We have provided you with test-eval which reads
+a file containing lines with one pair of hands
+on each line, and prints out the details of evaluating
+that hand.  Each line has one hand, a semi-colon,
+then the other hand, so the input for the above would
+be:
 
-For each broken program, write the input which breaks the program
-into a file called "input.X" where X is 1, 2, 3, or 4 (so input.1 has
-the command line argument that shows that isPrime-broken1 is broken).
+0c 0s 8s 7d 6d 6s 5c; Js 0s 8s 7d 6s 5c 4c
 
-Note that isPrime-correct's behavior is considered correct, and
-any test case which deviates from it is considered wrong.
- 
+We have put this in example.txt.  If you run
+
+./test-eval example.txt
+
+Then you will get the following output:
+
+Hand 1:
+--------
+0c 0s 8s 7d 6d 6s 5c 
+ - No flush
+ - The most of a kind is 2 of a kind (at index 0 / value 0)
+ - Secondary pair at index 4 (value 6)
+ - evaluate_hand's ranking: TWO_PAIR
+ - 5 cards used for hand: 0c 0s 6d 6s 8s 
+Hand 2:
+--------
+Js 0s 8s 7d 6s 5c 4c 
+ - No flush
+ - Straight at index 2
+ - The most of a kind is 1 of a kind (at index 0 / value J)
+ - No secondary pair
+ - evaluate_hand's ranking: STRAIGHT
+ - 5 cards used for hand: 8s 7d 6s 5c 4c 
+Comparison : 
+--------------
+Hand 2 wins!
+============================
+
+You can see that for each hand, this program not only prints
+the overal ranking (STRAIGHT, TWO_PAIR, etc), but also the
+results of various parts of the evaluation that went into
+the decision: Was there a flush?  Was there a straight (if
+so, where?) How many of a kind where there? etc.
+
+As with other testing assignments, we have written
+some broken implementations, and placed them in
+/usr/local/l2p/poker/
+
+Your goal is to write testcases in tests.txt
+which test this problem sufficiently to identify
+the problem in each broken implementation we provided.
+
+You can use the run_all.sh script that we provided
+to run your test cases against all implementations.
+
+Here are some hints:
+====================
+
+ - Straights are tricky. Think about various
+   ways that a programmer might mess up in
+   finding a straight.
+ - Think about ways in which a programmer
+   might mis-think about what they need
+   to.  For example, one might think you
+   can check for a straight flush by
+   checking for a straight AND a flush,
+   but that is not correct (with more
+   than 5 cards, you could have some
+   that are a straigth but others of the same suit).
+ - Be sure to just provide simple coverage
+   of the basic cases (each type of hand outcome, etc).
+ - The suits are numbers, and can be iterated
+   across [where do you think we iterate over
+   all the suits?].   What if we counted
+   wrong when iterating over the suits?
+ - Two pairs have some subtle cases
+   in terms of selecting the right 5
+   cards for the final hand.  Note
+   that due to the way tiebreaking
+   works, the final 5 card hand
+   has to be ordered
+   (larger pair) (smaller pair) (tiebreaker)
+   [as in Hand 1 of the example above]
+
+
+
