@@ -11,7 +11,7 @@ run_test(){
     prog="$1"
     testfile="$2"
     IFS=$'\n'
-    IFS=" " correct=`/usr/local/l2p/poker/correct-eval $testfile 2>&1`
+    IFS=" " correct=`/usr/local/l2p/poker/correct-test-eval $testfile 2>&1`
     IFS=" " broken=`$prog $testfile 2>&1`
     if [ "$broken" != "$correct" ]
     then

@@ -1,3 +1,26 @@
+#include <stdlib.h>
+#include <stdio.h>
+size_t maxSeq(int * array, size_t n);
+static inline    void doTest(int * array, size_t n) {
+  printf("maxSeq(");
+  if (array == NULL) {
+    printf("NULL");
+  }
+  else {
+    printf("{");
+    for (size_t i =0; i < n; i++) {
+      printf("%d", array[i]);
+      if (i < n -1) {
+	printf(", ");
+      }
+    }
+    printf("}");
+  }
+  printf(", %zu) is \n", n);
+  size_t ans = maxSeq (array, n);
+  printf("%zu\n", ans);
+}
+
 int main(int argc, char ** argv) {
   size_t n = atoi(argv[1]);
   int max = atoi(argv[2]);
