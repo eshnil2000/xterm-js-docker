@@ -20,7 +20,7 @@ run_test(){
     return 1
 }
 
-for i in /usr/local/l2p/poker/eval-*
+for i in /usr/local/l2p/poker/test-eval-*
 do
     run_test $i tests.txt
     x="$?"
