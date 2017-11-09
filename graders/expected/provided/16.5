@@ -31,6 +31,26 @@ int main(int argc, char ** argv) {
     array[i] = random() % max;
   }
   doTest (array, n);
+  for (int i = 0; i < n; i++) {
+    array[i] = -i;
+  }
+  doTest(array,n);
+  for (int i = 0; i < n; i++) {
+    array[i] = i;
+  }
+  doTest(array,n);
+  if (n>10) {
+    array[10] = array[9];
+  }
+  doTest(array,n);
+  for (int i =0; i < n-1; i+=2) {
+    if(random() % 42 ==0) {
+      int temp = array[i];
+      array[i]=array[i+1];
+      array[i+1]=temp;
+    }
+  }
+  doTest(array,n);
   free(array);
   return EXIT_SUCCESS;
 }

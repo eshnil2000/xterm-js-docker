@@ -1,5 +1,5 @@
 # 3: script
-# 4: expected output for their function
+# 4: test list
 # 5: test main
 # 6: reference implementation
 
