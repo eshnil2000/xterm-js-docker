@@ -26,6 +26,7 @@ do1test "Testing card_from_letters" cfl
 # char suit_letter(card_t c);
 do1test "Testing value_letter and suit_letter" vlsl
 
+echo "Testing print_card"
 # void print_card(card_t c) ;
 ./tester pc > tmp.txt
 if [ "$?" == "0"  ]
@@ -52,7 +53,8 @@ echo "Testing card_from_num"
 if [ "$?" == "0"  ]
 then
     sort tmp.txt > tmp2.txt
-    diff -w /dev/fd/5 tmp2.txt > /dev/null
+    sort /dev/fd/5 > tmp3.txt
+    diff -w tmp3.txt tmp2.txt > /dev/null
     if [ "$?" == "0" ]
     then
 	echo "Passed"
