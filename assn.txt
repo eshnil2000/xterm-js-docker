@@ -1,3 +1,4 @@
+00_hello:90:01_apple:
 01_apple:90:02_code1:Week 1 Tools / Reading: Emacs
 02_code1:90:03_code2:Week 1 Review / Reading: How Assignments Work in This Course
 03_code2:90:04_compile:
