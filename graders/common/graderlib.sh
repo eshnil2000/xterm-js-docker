@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Grading at `date`"
 ulimit -f 25000
 CLANGBIN=/usr/local/clang/bin
 FAILED="1"
