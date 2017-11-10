@@ -80,7 +80,11 @@ Here are some hints:
 
  - Straights are tricky. Think about various
    ways that a programmer might mess up in
-   finding a straight.
+   finding a straight.  These problems
+   could include both figuring out if
+   there is a straight as well as copying
+   out the cards that make up the straight.
+   
  - Think about ways in which a programmer
    might mis-think about what they need
    to.  For example, one might think you
@@ -89,20 +93,22 @@ Here are some hints:
    but that is not correct (with more
    than 5 cards, you could have some
    that are a straigth but others of the same suit).
+   
  - Be sure to just provide simple coverage
    of the basic cases (each type of hand outcome, etc).
+   
  - The suits are numbers, and can be iterated
    across [where do you think we iterate over
    all the suits?].   What if we counted
    wrong when iterating over the suits?
+   
  - Two pairs have some subtle cases
    in terms of selecting the right 5
-   cards for the final hand.  Note
-   that due to the way tiebreaking
-   works, the final 5 card hand
-   has to be ordered
+   cards for the final hand.  Remember
+   from the reading that the way
+   tie breaking works requires
+   the final 5 card hand to be ordered:
    (larger pair) (smaller pair) (tiebreaker)
-   [as in Hand 1 of the example above]
 
 
 

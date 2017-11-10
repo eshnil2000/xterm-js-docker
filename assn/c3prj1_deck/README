@@ -18,6 +18,47 @@ typedef struct deck_tag deck_t;
 We'll use the same type for a deck of cards or a hand
 of cards, since both are just a set of cards.
 
+We'll note that we could have chosen to make an array
+of cards (card_t * cards) but instead decided to make
+an array of card pointers (card_t ** cards).  You may
+wonder why we selected this design.   With this design,
+when you shuffle an array, you will move the pointers
+around, but they will point to card_ts that stay in the
+same place.  This means that if you have OTHER pointers
+(as you will have in Course 4 to handle unknown cards),
+they will still point to the right place.
+
+For example, if you have (Ah,Ks,Qc,?0):
+         
+        Ah    Ks    Qc    ?0<----to_replace
+        ^     ^     ^     ^
+        |     |     |     |	
+        |     |     |     |
+        |     |     |     |
+     +--|--+--|--+--|--+--|--+
+arr->|  |  |  |  |  |  |  |  |
+     +-----+-----+-----+-----+
+
+and you shuffle the pointers in the array
+(yielding, e.g, Ks, ?0, Ah, Qc) :
+
+         /------\
+        V        \
+        Ah    Ks |   Qc    ?0<----to_replace
+              ^  |   ^     ^
+          ____/  \   \     /
+         /     ___\___\___/
+        /     /    \   ---  
+     +--|--+--|--+--\--+--\--+
+arr->|  |  |  |  |  |  |  |  |
+     +-----+-----+-----+-----+
+
+the to_replace pointer still points at ?0
+with no other changes.  If we had an array
+of cards and shuffled them directly, it would
+be much harder to do the card replacement later.
+
+
 First, you will write four functions in deck.c:
 
  - void print_hand(deck_t * hand); 
@@ -78,7 +119,7 @@ First, you will write four functions in deck.c:
   Hint: you already wrote deck_contains.
 
 ------------
-At this point, stop and
+Once you have completed these functions, you should run
 
 make test-deck
 

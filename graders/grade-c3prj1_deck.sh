@@ -1,3 +1,4 @@
+export PokerProjectStep=301
 cat /dev/fd/4 > grade-deck.o
 echo "Compiling deck.c"
 gcc -O3 -c -Wall -Werror -std=gnu99 -pedantic deck.c 2>&1
