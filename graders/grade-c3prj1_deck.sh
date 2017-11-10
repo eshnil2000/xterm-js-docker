@@ -25,9 +25,9 @@ then
     exit 0
 fi
 
-echo ""
-echo "Running your code (this might take a minute: doing many shuffles...)"
-echo "....."
+#echo ""
+echo "Running your code (this might take a minute: doing many shuffles...)" >&2
+echo "....." >&2
 
 timeout -s 9 45 valgrind --log-file=vg.log ./tester > out.1 4</dev/null 5</dev/null
 if [ "$?" == "124" ]
