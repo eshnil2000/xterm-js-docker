@@ -43,7 +43,7 @@ else
 fi
 
 
-rinfo=`grep ShuffleRandom: out.`
+rinfo=`grep ShuffleRandom: out.1`
 grep -v ShuffleRandom: out.1 > out.2
 cat /dev/fd/5 > ours.out
 echo "Checking everything but shuffle..."
