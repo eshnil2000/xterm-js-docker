@@ -1,7 +1,4 @@
 export PokerProjectStep=301
-pwd
-ls -l
-ls -l ../
 cat /dev/fd/4 > grade-deck.o
 echo "Compiling deck.c"
 gcc -O3 -c -Wall -Werror -std=gnu99 -pedantic deck.c 2>&1
@@ -59,6 +56,29 @@ else
     echo "Those functions seem to have problems"
     grade=0
 fi
-
-
-passFailGradeFromStatus $PASSED
+echo "Checking your shuffle results with a 6 card hand..."
+#ShuffleRandom:%lf:%lf:A
+minp=`echo $rinfo | cut -f2 -d":"`
+maxp=`echo $rinfo | cut -f3 -d":"`
+echo "  Least common hand: $minp"
+echo "  Most  common hand: $maxp"
+echo "  Ideal hand:        0.1388888"
+goodness=`echo $rinfo | cut -f4 -d":"`
+case $goodness in
+    A)
+	echo " Excellent!"
+	let grade=$grade+50
+	;;
+    B)
+	echo " Pretty good!"
+	let grade=$grade+35
+	;;
+    C)
+	echo " That isn't too bad, but could you do better?"
+	let grade=$grade+25
+	;;
+    *)
+	echo " That doesn't seem terribly uniform."
+	echo " Try to improve your shuffling algorithm and re-grade"
+esac
+overallGradeLetter $grade
