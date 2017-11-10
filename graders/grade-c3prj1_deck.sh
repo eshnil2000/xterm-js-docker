@@ -25,6 +25,10 @@ then
     exit 0
 fi
 
+echo ""
+echo "Running your code (this might take a minute: doing many shuffles...)"
+echo "....."
+
 timeout -s 9 45 valgrind --log-file=vg.log ./tester > out.1 4</dev/null 5</dev/null
 if [ "$?" == "124" ]
 then
@@ -46,14 +50,19 @@ fi
 rinfo=`grep ShuffleRandom: out.1`
 grep -v ShuffleRandom: out.1 > out.2
 cat /dev/fd/5 > ours.out
-echo "Checking everything but shuffle..."
+echo "Checking the output of all the functions other than shuffle"
 diffFile out.2 ours.out
 if [ "$?" == "$PASSED" ]
 then 
-    echo "Those functions seem to work!"
+    echo " - Those functions seem to work!"
     grade=50
 else
-    echo "Those functions seem to have problems"
+    echo " - Those functions seem to have problems"
+    echo "---"
+    cat out.2
+    echo "--"
+    cat ours.out
+    echo "---"
     grade=0
 fi
 echo "Checking your shuffle results with a 6 card hand..."
@@ -62,7 +71,7 @@ minp=`echo $rinfo | cut -f2 -d":"`
 maxp=`echo $rinfo | cut -f3 -d":"`
 echo "  Least common hand: $minp"
 echo "  Most  common hand: $maxp"
-echo "  Ideal hand:        0.1388888"
+echo "  Perfectly even is: 0.138888"
 goodness=`echo $rinfo | cut -f4 -d":"`
 case $goodness in
     A)
