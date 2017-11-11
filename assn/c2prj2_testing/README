@@ -83,8 +83,10 @@ Here are some hints:
    finding a straight.  These problems
    could include both figuring out if
    there is a straight as well as copying
-   out the cards that make up the straight.
-   
+   out the cards that make up the straight
+   (or straight flush).
+
+
  - Think about ways in which a programmer
    might mis-think about what they need
    to.  For example, one might think you
