@@ -17,11 +17,11 @@ When you have done this, run
 
 ./test.sh
 
-As before, this script will try to compile your code (which you will learn about in
-the next chapter), as well as run it.   If your code does not have legal
+As before, this script will try to compile your code (which you will learn about
+ina n upcoming lesson), as well as run it.   If your code does not have legal
 syntax, it will do its best to describe what is wrong.  If there
 is a problem, look at the code and try to see where you did not follow
-the syntax rules from chapter 2.  The line number and message it gives
+the syntax rules from Course 1  The line number and message it gives
 may help you find the problem.  If you cannot find the problem after a minute
 or two, ask for help.
 

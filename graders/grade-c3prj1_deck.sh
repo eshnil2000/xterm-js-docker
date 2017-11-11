@@ -58,20 +58,15 @@ then
     grade=50
 else
     echo " - Those functions seem to have problems"
-    echo "---"
-    cat out.2
-    echo "--"
-    cat ours.out
-    echo "---"
     grade=0
 fi
 echo "Checking your shuffle results with a 6 card hand..."
 #ShuffleRandom:%lf:%lf:A
 minp=`echo $rinfo | cut -f2 -d":"`
 maxp=`echo $rinfo | cut -f3 -d":"`
-echo "  Least common hand: $minp"
-echo "  Most  common hand: $maxp"
-echo "  Perfectly even is: 0.138888"
+echo "  Least common hand: ${minp}%"
+echo "  Most  common hand: ${maxp}%"
+echo "  Perfectly even is: 0.138888%"
 goodness=`echo $rinfo | cut -f4 -d":"`
 case $goodness in
     A)

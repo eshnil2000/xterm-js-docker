@@ -11,7 +11,7 @@
 10_gdb:90:c2prj1_cards:Week 3 Review
 c2prj1_cards:90:c2prj2_testing:Week 4 Project / Reading: Poker Project Roadmap
 c2prj2_testing:90:11_read_ptr1:Week 4 Project / Reading: Rules of Poker
-11_read_ptr1:90:12_read_ptr2:Week 1 Pointers / Video: Corrected Swap
+11_read_ptr1:90:12_read_ptr2:Course 3's Week 1 Pointers / Video: Corrected Swap
 12_read_ptr2:90:13_read_arr1:Week 1 Pointers / Reading: Use Memory Checker Tools
 13_read_arr1:90:14_array_max:Week 2 Arrays / Reading: Writing Code with Arrays
 14_array_max:90:15_tests_subseq:
