@@ -8,7 +8,7 @@ CORRECT=/usr/local/l2p/poker/correct-test-eval
 grade=0
 ppt=10
 testcase=0
-runTest {
+runTest() {
     let testcase=${testcase}+1
     echo "Testcase ${testcase}: $1"
     cat /dev/fd/${2} > inp.${testcase}.txt
