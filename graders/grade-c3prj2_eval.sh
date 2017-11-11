@@ -2,7 +2,19 @@ export PokerProjectStep=302
 echo "Compiling your code"
 make clean
 make test-eval
-
+if [ "$?" != 0 ]
+then
+    echo "'make test-eval' failed."
+    overallGradeLetter 0
+    exit 0
+fi
+if [ ! -x ./test-eval ]
+then
+    echo "'make test-eval' failed to produce test-eval"
+    overallGradeLetter 0
+    exit 0
+fi
+    
 CORRECT=/usr/local/l2p/poker/correct-test-eval
 
 grade=0
