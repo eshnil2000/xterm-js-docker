@@ -1,5 +1,21 @@
 #!/bin/bash
 next="$1"
+if [ "$next" == "" ]
+then
+    echo "You need to specify the assignment tag to fast-forward to"
+    echo ""
+    echo "Here are all the assignment tags"
+    for i in /git-remote/passed.*
+    do
+	cnum=`echo $i | cut -f2 -d"." | cut -c2`
+	echo "======================="
+	echo "Assignments in Course $cnum"
+	echo "======================="
+	cut -f1 -d":" $i
+    done
+    exit 1
+fi
+   
 BASE=/graderhome
 STUDENT=${BASE}/student/learn2prog
 REMOTE=/git-remote/learn2prog
