@@ -9,6 +9,7 @@ cat /dev/fd/9 > long-file.txt
 cat /dev/fd/10 > eof.txt
 cat /dev/fd/11 > normal2.txt
 cat /dev/fd/12 > normal3.txt
+cat /dev/fd/13 > long-line-2.txt
 
 
 
@@ -44,7 +45,7 @@ fi
 
 total=0
 correct=0
-for x in "NonExistentFile" blank.txt short-line.txt short-file.txt long-line.txt long-file.txt "normal1.txt normal2.txt"
+for x in "NonExistentFile" blank.txt short-line.txt short-file.txt long-line.txt long-file.txt "normal1.txt normal2.txt" long-line2.txt
 do
     let testcase=${testcase}+1
     echo "#################################################"
