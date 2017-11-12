@@ -45,11 +45,12 @@ fi
 
 total=0
 correct=0
-for x in "NonExistentFile" blank.txt short-line.txt short-file.txt long-line.txt long-file.txt "normal1.txt normal2.txt" long-line2.txt
+for x in "NonExistentFile" blank.txt short-line.txt short-file.txt long-line.txt long-file.txt long-line-2.txt "normal1.txt normal2.txt" 
 do
     let testcase=${testcase}+1
     echo "#################################################"
-    echo "testcase$testcase:"
+    echo "testcase$testcase: $x"
+    echo " (should indicate an error)"
     timeout -s 9 5 $vg2 $vga ./rotateMatrix $x > temp.txt
     valgrindErrorCheck
     if [ "$?" == $FAILED ]
@@ -74,7 +75,7 @@ let testcase=${testcase}+1
 for fname in normal1.txt normal2.txt normal3.txt eof.txt
 do
     echo "#################################################"
-    echo "testcase$testcase:"
+    echo "testcase$testcase: $fname"
     timeout -s 9 5 $vg2 $vga ./rotateMatrix $fname > temp.txt
     valgrindErrorCheck
     if [ "$?" == $FAILED ]
