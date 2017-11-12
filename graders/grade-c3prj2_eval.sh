@@ -37,7 +37,9 @@ runTest() {
 	cat vg.log
 	return $FAILED
     fi
+    export PokerProjectStep=0
     ${CORRECT} inp.${testcase}.txt > ours.${testcase}.txt
+    export PokerProjectStep=302
     echo " Checking the output "
     diffFile inp.${testcase}.txt > ours.${testcase}.txt
     if [ "$?" == "$PASSED" ]
