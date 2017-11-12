@@ -41,7 +41,7 @@ runTest() {
     runRefImpl inp.${testcase}.txt > ours.${testcase}.txt
     export PokerProjectStep=302
     echo " Checking the output "
-    diffFile inp.${testcase}.txt > ours.${testcase}.txt
+    diffFile theirs.${testcase}.txt > ours.${testcase}.txt
     if [ "$?" == "$PASSED" ]
     then
 	echo " - Testcase passed"
@@ -49,6 +49,10 @@ runTest() {
 	return $PASSED
     else
 	echo " - Output did not match, testcase failed"
+	echo "Here is what I got"
+	cat ours.${testcase}.txt
+	echo "Here is what the student got"
+	cat theirs.${testcase}.txt
 	return $FAILED
     fi
     
