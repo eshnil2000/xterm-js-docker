@@ -15,7 +15,7 @@ then
     exit 0
 fi
     
-CORRECT=/usr/local/l2p/poker/correct-test-eval
+loadRefImpl /dev/fd/14
 
 grade=0
 ppt=10
@@ -38,7 +38,7 @@ runTest() {
 	return $FAILED
     fi
     export PokerProjectStep=0
-    ${CORRECT} inp.${testcase}.txt > ours.${testcase}.txt
+    runRefImpl inp.${testcase}.txt > ours.${testcase}.txt
     export PokerProjectStep=302
     echo " Checking the output "
     diffFile inp.${testcase}.txt > ours.${testcase}.txt
