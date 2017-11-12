@@ -1,1 +1,1 @@
-../19_bits_arr/outname.h
+../29_outname/outname.h

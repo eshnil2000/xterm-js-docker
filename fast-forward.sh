@@ -40,6 +40,8 @@ else
 		   git add ${STUDENT}/${next} && \
 		   git commit -m 'Released assignment' && \
 	           git push) 2>/dev/null  >/dev/null
+	   echo ""
+	   echo "Use git pull to receive this new assignment"
     else
 	echo "$next does not appear to be a valid assignment"
     fi
