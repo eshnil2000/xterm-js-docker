@@ -15,18 +15,18 @@ then
     overallGradeLetter 0
     exit 0
 fi
-echo "Compiling card.c -> card.o"
-gcc -Wall -Werror -std=gnu99 -pedantic -c card.c 2>&1
+echo "Compiling cards.c -> cards.o"
+gcc -Wall -Werror -std=gnu99 -pedantic -c cards.c 2>&1
 if [ "$?" != 0 ]
 then
-    echo "Compilation of card.c failed"
+    echo "Compilation of cards.c failed"
     overallGradeLetter 0
     exit 0
 fi
 
-echo "Linking eval.o, deck.o, card.o, and our tester"
+echo "Linking eval.o, deck.o, cards.o, and our tester"
 cat /dev/fd/4 > tester.o
-gcc -o tester eval.o deck.o card.o tester.o 2>&1
+gcc -o tester eval.o deck.o cards.o tester.o 2>&1
 if [ "$?" != 0 ]
 then
     echo "Linking failed"
@@ -71,6 +71,14 @@ echo "Testing build_remaining_deck(deck_t **, size_t)"
 run_test brd
 echo "Testing get_match_count(deck_t *)"
 run_test gmc
+
+let wrong=${total}-${correct}
+let grade=100-15*${wrong}
+if [ "$grade" -lt "0" ]
+then
+    grade=0
+fi
+overallGradeLetter $grade
 
 
     
