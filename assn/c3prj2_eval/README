@@ -47,7 +47,7 @@ this managable:
          an ace-low straight. 
      (These both hold for all major poker variants)
 
-If you open up eval.h, you will find the following functions
+If you open up eval.c, you will find the following functions
 that you will need to write:
 
  - int card_ptr_comp(const void * vp1, const void * vp2) 
@@ -239,6 +239,10 @@ that you will need to write:
       of cards---if element 0 is the different, use that difference
       to determine your answer.  If element 0 is the same,
       look at element 1, and so on).
+
+You will also notice some functions at the bottom of eval.c that
+we provided.  You don't need to do anything to these---we wrote
+them for you to keep the amount of code manageable.
 
 --------------
 That sure was a lot of code!  You've been compiling and testing

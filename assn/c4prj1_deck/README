@@ -62,8 +62,13 @@ Add these functions to deck.c:
      free_deck(d);
    it should free all the memory allocated by make_excluded_deck
 
-Add this function to eval.c:
+Next, go back to eval.c, and implement:
  - unsigned * get_match_counts(deck_t * hand) ;
+   You will find its prototype after the code you wrote
+   in Course 3, and before the functions we
+   provided for you.  Replace the prototype with
+   your implementation.
+
    Given a hand (deck_t) of cards, this function
    allocates an array of unsigned ints with as
    many elements as there are cards in the hand.

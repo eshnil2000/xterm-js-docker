@@ -14,14 +14,11 @@ First, take a look at future.h.  You will see
 that there is one struct (which is basically an
 array of decks), and two functions.
 
-Next, watch [[FILL IN VIDEO NAME/LINK HERE]]
-in which we explain to you the conceptual idea
-of how we represent future cards.  Good thing
-you learned to draw pictures of the behavior
-of programs isn't it? :)
+Next, watch the video in which we explain to you the conceptual idea
+of how we represent future cards.  Good thing you learned to draw
+pictures of the behavior of programs isn't it? :)
 
-Now you are ready to write the two functions
-in future.c:
+Now you are ready to write the two functions in future.c:
 
  - void add_future_card(future_cards_t * fc, size_t index, card_t * ptr) ;
    This add ptr into the future cards for the given index (that is,
