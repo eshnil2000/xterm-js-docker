@@ -158,7 +158,7 @@ then
 	    mesg=`grep "^$next" ${DATA} | cut -f4- -d":" `
 	    if [ "$mesg" != "" ]
 	    then
-		echo "You should continue watching videos until you have watched:"
+		echo "You should continue working through the course until you have done:"
 		echo "  $mesg  "
 		echo "which covers the material you will need to do $next"
 	    fi		

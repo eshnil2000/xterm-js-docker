@@ -3,8 +3,8 @@ of gdb.  You will want to use gdb extensively during the rest
 of the semester, as it is an incredibly useful tool to gather
 information during the debugging process.  For now, we 
 are just going to get started with some basic commands.
-Be sure you have read Appendix C, Part 2 of AOP before
-proceeding.
+Be sure you have done the readings and watched
+the video on gdb. 
 
 Enclosed, you will find game.c and the compiled
 binary game, for the most boring guessing game
@@ -43,7 +43,7 @@ In emacs, do
 
 ESC-x gdb
 
-Emacs will prompt you for how to run gdb (the default shoudl be fine),
+Emacs will prompt you for how to run gdb (the default should be fine),
 and then give you the gdb prompt.  
 Use the "start" commmand to begin execution, then use "next"
 and "print" to find the secret number for round 1.
