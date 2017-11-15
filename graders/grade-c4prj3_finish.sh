@@ -24,7 +24,7 @@ run_test (){
     expTotal="$3"
     timeout="$4"
     echo "Running a simulation with $expTotal draws for $numHands hands..." >&2
-
+    echo "Running a simulation with $expTotal draws for $numHands hands..." 
     let total=${total}+1
     timeout -s 9 $timeout valgrind --log-file=vg.log ./poker ${inp} ${expTotal} > theirs.out 6</dev/null 7</dev/null 8</dev/null 9</dev/null 10</dev/null 11</dev/null 12</dev/null 13</dev/null
     x="$?"
@@ -75,8 +75,8 @@ run_test (){
 			echo " ** Hand $hnum differed from our answer by ${delta}%"
 			allok=0
 		    fi
-		    let hnum=${hnum}+1
 		fi
+		let hnum=${hnum}+1
 	    done
 	    theirTies=`grep "ties" theirs.out | sed 's/^[A-Za-z ]*\([0-9]\+\)[A-Za-z ]*/\1/'`
 	    let theirTotal=${theirTotal}+theirTies

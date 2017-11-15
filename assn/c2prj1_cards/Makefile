@@ -1,5 +1,5 @@
 CFLAGS=-ggdb3 -Wall -Werror -pedantic -std=gnu99
-GIVEN_OBJS=deck.o  eval.o  future.o  input.o  main.o
+GIVEN_OBJS=deck.o  eval.o  future.o  input.o  main.o eval-c4.o deck-c4.o
 
 test: cards.o my-test-main.o
 	gcc -o test -ggdb3 cards.o my-test-main.o
