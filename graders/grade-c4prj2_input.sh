@@ -1,7 +1,7 @@
 export PokerProjectStep=402
 compile() {
     fname="$1"
-    echo "Compiling ${fname}.c -> ${fname}o"
+    echo "Compiling ${fname}.c -> ${fname}.o"
     gcc -Wall -Werror -std=gnu99 -pedantic -c ${fname}.c 2>&1
     if [ "$?" != 0 ]
     then
