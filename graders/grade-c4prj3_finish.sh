@@ -75,8 +75,8 @@ run_test (){
 			echo " ** Hand $hnum differed from our answer by ${delta}%"
 			allok=0
 		    fi
-		    let hnum=${hnum}+1
 		fi
+		let hnum=${hnum}+1
 	    done
 	    theirTies=`grep "ties" theirs.out | sed 's/^[A-Za-z ]*\([0-9]\+\)[A-Za-z ]*/\1/'`
 	    let theirTotal=${theirTotal}+theirTies
