@@ -52,11 +52,11 @@ deploy_production_prog1:
     - coursera-xtermjs
   stage: deploy
   script:
-    - echo "Building the production app"
+    - echo "Building the app for the test/staging server"
     - ./build-production
     - echo "Copy the git-remote and homedir templates into place for all users" 
-    - ./copy-gitremote-and-homedir
-    - echo "Deploy to production server"
+    - ./copy-gitremote-and-homedir-test
+    - echo "Deploy to test/staging server"
     - cd /srv/persistent-data/docker-scripts; ./run-everything
   environment:
     name: production
@@ -74,7 +74,7 @@ deploy_production0:
     - echo "Building the production app"
     - ./build-production
     - echo "Copy the git-remote and homedir templates into place for all users" 
-    - ./copy-gitremote-and-homedir
+    - ./copy-gitremote-and-homedir-production
     - echo "Deploy to production server"
     - cd /srv/persistent-data/docker-scripts; ./run-everything
   environment:
@@ -92,7 +92,7 @@ deploy_production1:
     - echo "Building the production app"
     - ./build-production
     - echo "Copy the git-remote and homedir templates into place for all users" 
-    - ./copy-gitremote-and-homedir
+    - ./copy-gitremote-and-homedir-production
     - echo "Deploy to production server"
     - cd /srv/persistent-data/docker-scripts; ./run-everything
   environment:
@@ -110,7 +110,7 @@ deploy_production2:
     - echo "Building the production app"
     - ./build-production
     - echo "Copy the git-remote and homedir templates into place for all users" 
-    - ./copy-gitremote-and-homedir
+    - ./copy-gitremote-and-homedir-production
     - echo "Deploy to production server"
     - cd /srv/persistent-data/docker-scripts; ./run-everything
   environment:
@@ -128,7 +128,7 @@ deploy_production3:
     - echo "Building the production app"
     - ./build-production
     - echo "Copy the git-remote and homedir templates into place for all users" 
-    - ./copy-gitremote-and-homedir
+    - ./copy-gitremote-and-homedir-production
     - echo "Deploy to production server"
     - cd /srv/persistent-data/docker-scripts; ./run-everything
   environment:
