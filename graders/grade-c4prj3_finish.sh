@@ -1,6 +1,8 @@
 export PokerProjectStep=403
-echo "Running 'make poker' to build your project"
-make poker 2>&1
+echo "Running 'make clean' to do a clean build of your project"
+make clean
+echo "Running 'make poker OTHERFLAGS=-O3' to build your project"
+make poker OTHERFLAGS=-O3 2>&1
 if [ "$?" != 0 ]
 then
     echo "make failed"
@@ -53,6 +55,8 @@ run_test (){
 		theirPct=`echo $thdata | sed 's/^[A-Za-z0-9 /]*(//' | sed 's/%).*//'`
 		ourPct=`echo $ohdata | sed 's/^[A-Za-z0-9 /]*(//' | sed 's/%).*//'`
 		let theirTotal=${theirTotal}+theirNum
+		echo "delta=`echo "scale=4; ${ourPct}-${theirPct}" | bc`" >&2
+		echo "ok=`echo "scale=4; $delta<=0.5 && $delta>=-0.5" | bc`" >&2
 		delta=`echo "scale=4; ${ourPct}-${theirPct}" | bc`
 		ok=`echo "scale=4; $delta<=0.5 && $delta>=-0.5" | bc`
 		if [ "$ok" == "1" ]
