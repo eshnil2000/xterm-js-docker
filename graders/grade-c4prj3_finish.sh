@@ -55,19 +55,28 @@ run_test (){
 		theirPct=`echo $thdata | sed 's/^[A-Za-z0-9 /]*(//' | sed 's/%).*//'`
 		ourPct=`echo $ohdata | sed 's/^[A-Za-z0-9 /]*(//' | sed 's/%).*//'`
 		let theirTotal=${theirTotal}+theirNum
-		echo "delta=echo scale=4; ${ourPct}-${theirPct} | bc" >&2
-		echo "ok=echo scale=4; $delta<=0.5 && $delta>=-0.5 | bc" >&2
-		delta=`echo "scale=4; ${ourPct}-${theirPct}" | bc`
-		ok=`echo "scale=4; $delta<=0.5 && $delta>=-0.5" | bc`
-		if [ "$ok" == "1" ]
+		if [ "$theirPct" == "" ]
 		then
-		    echo "Hand $hnum was close enough to our answer"
-		else
-		    echo "Hand $hnum differed from our answer by ${delta}%"
+		    echo "Could not find the win percent in your output"
 		    allok=0
+		elif [ "$theirNum" == "" ]
+		then
+		    echo "Could not find the number of hands that matched"
+		    allok=0
+		else
+		    #echo "delta=echo scale=4; ${ourPct}-${theirPct} | bc" >&2
+		    #echo "ok=echo scale=4; $delta<=0.5 && $delta>=-0.5 | bc" >&2
+		    delta=`echo "scale=4; ${ourPct}-${theirPct}" | bc`
+		    ok=`echo "scale=4; $delta<=0.5 && $delta>=-0.5" | bc`
+		    if [ "$ok" == "1" ]
+		    then
+			echo "    Hand $hnum was close enough to our answer"
+		    else
+			echo " ** Hand $hnum differed from our answer by ${delta}%"
+			allok=0
+		    fi
+		    let hnum=${hnum}+1
 		fi
-		let hnum=${hnum}+1
-		
 	    done
 	    theirTies=`grep "ties" theirs.out | sed 's/^[A-Za-z ]*\([0-9]\+\)[A-Za-z ]*/\1/'`
 	    let theirTotal=${theirTotal}+theirTies
@@ -75,10 +84,10 @@ run_test (){
 	    then
 		if [ "$allok" == "1" ]
 		then
-		    echo "Test case passed!"
+		    echo "    Test case passed!    "
 		    let correct=${correct}+1
 		else
-		    echo "Test case failed"
+		    echo "*** Test case failed ***"
 		fi
 	    else
 		echo "You dont seem to have the right total draws."
@@ -104,7 +113,7 @@ cat /dev/fd/11 > inp.txt
 echo " - Next, few Seven Card Stud hands"
 run_test inp.txt 2 15000 7
 cat /dev/fd/12 > inp2.txt
-run_test inp.txt 3 20000 15
+run_test inp2.txt 3 20000 15
 echo " - Then one from a completely made up poker variant"
 cat /dev/fd/13 > whacky.txt
 run_test whacky.txt 6 100000 30
