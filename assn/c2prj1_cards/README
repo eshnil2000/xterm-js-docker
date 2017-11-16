@@ -4,7 +4,7 @@ winning in poker in a situation described by an input file.
 
 In this portion of the project, you are going write some
 functions that work with cards (specifically, a struct
-which represents a card): printing them
+that represents a card): printing them
 in human readable format, converting the pair of letters
 that describe a card back into a struct (which gets
 used to read the input from a file), etc.
@@ -13,7 +13,7 @@ There is a lot that will be required to complete
 the project that you will learn in the later
 courses (e.g., arrays, strings, dynamic memory allocation,
 file IO).  To make it so you can still run the poker
-simulation when you complete this project, we have provide
+simulation when you complete this project, we have provided
 object files (.o) for the later parts.  The included
 Makefile will build your cards.c with our .o files,
 if you do
@@ -21,7 +21,7 @@ if you do
 make poker
 
 You'll write all these parts later on, when you
-finish Courses 3 and 4, and have learned the
+finish Courses 3 and 4 and have learned the
 corresponding concepts.
 
 In the meantime, you can test your functions

@@ -78,38 +78,32 @@ to run your test cases against all implementations.
 Here are some hints:
 ====================
 
- - Straights are tricky. Think about various
-   ways that a programmer might mess up in
-   finding a straight.  These problems
-   could include both figuring out if
-   there is a straight as well as copying
-   out the cards that make up the straight
-   (or straight flush).
+ - Straights are tricky. Think about various ways that a programmer
+   might mess up in finding a straight.  These problems could include
+   both figuring out if there is a straight as well as copying out the
+   cards that make up the straight (or straight flush).
 
-
- - Think about ways in which a programmer
-   might mis-think about what they need
-   to.  For example, one might think you
-   can check for a straight flush by
-   checking for a straight AND a flush,
-   but that is not correct (with more
-   than 5 cards, you could have some
-   that are a straigth but others of the same suit).
+   There could even be an off-by-one bug in where to look for a straight
+   in the hand ("count from 0 to the number of cards in the hand minus
+   [something], call it i.  Check if a straight starts at position i"
+   In such an algorithm, [something] could be off by one)
+    
+ - Think about ways in which a programmer might mis-think about what
+   they need to.  For example, one might think you can check for a
+   straight flush by checking for a straight AND a flush, but that is
+   not correct (with more than 5 cards, you could have some that are a
+   straigth but others of the same suit).
    
- - Be sure to just provide simple coverage
-   of the basic cases (each type of hand outcome, etc).
+ - Be sure to just provide simple coverage of the basic cases (each
+   type of hand outcome, etc).
    
- - The suits are numbers, and can be iterated
-   across [where do you think we iterate over
-   all the suits?].   What if we counted
-   wrong when iterating over the suits?
+ - The suits are numbers, and can be iterated across [where do you
+   think we iterate over all the suits?].  What if we counted wrong
+   when iterating over the suits?
    
- - Two pairs have some subtle cases
-   in terms of selecting the right 5
-   cards for the final hand.  Remember
-   from the reading that the way
-   tie breaking works requires
-   the final 5 card hand to be ordered:
+ - Two pairs have some subtle cases in terms of selecting the right 5
+   cards for the final hand.  Remember from the reading that the way
+   tie breaking works requires the final 5 card hand to be ordered:
    (larger pair) (smaller pair) (tiebreaker)
 
 
