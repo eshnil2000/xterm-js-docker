@@ -2,9 +2,9 @@ Hand Evaluation
 ---------------
 The other part of the project that you will do in this
 course is write some of the code to evaluate and compare hands.
-Remember that in Course 2, you already wrote test cases
+Remember that in Course 2 you already wrote test cases
 for this code.   That means you have already thought
-about various corner cases that might come up,
+about various corner cases that might come up
 and will have a nice suite of tests ready to go
 when you finish your code.
 
@@ -16,7 +16,7 @@ part to represent a hand of cards as well (a hand
 of cards is just a much smaller deck of cards---they
 are both just sets of cards).
 
-There are four major steps to determining who won:
+There are three major steps to determining who won:
   (1) Figuring out what ranking each hand has (straight, flush, etc)
       If you look in cards.h, you will see enum hand_ranking_t,
       which you worked with in Course 2.
@@ -28,7 +28,7 @@ There are four major steps to determining who won:
 At this point, you might be thinking that there is going to
 be a lot of code to write with all the different possible
 arrangements of cards and different possible hand rankings.
-However, we there are a few important things that will make
+However, there are a few important things that will make
 this managable:
 
 (1) You will start by sorting the  cards into descending order
@@ -39,7 +39,7 @@ this managable:
 (3) Full house and two pair are just three of a kind and a pair
     (so we already have that code...) with another pair
     (so we can just write a function to find a secondary pair)
-(4) We are going to make two simplifying assumptions
+(4) We are going to make two simplifying assumptions:
        - if there is a flush, it will occur in at most one suit.
          (i.e., you won't have As Ah Kh Qs 8s 7h 4s 3s 3h 2h,
 	  which has two different flushes).
@@ -59,13 +59,21 @@ that you will need to write:
        something < 0  if card1 > card2
        0              if card1 == card2
        something > 0  if card1 < card2
+    If two cards have the same value, compare them by
+    suit in the same order as the enum suit_t:
+       club < diamond < heart < spade
     Note that vp1 and vp2 are passed as const void *
     because that is the type that qsort demands.
     They will should each be assigned to variables
     of type
-     const card_t * const * c1p
+     const card_t * const * cp1
     before using them (this is much like sorting
     an array of strings from your readings).
+    To learn more about using the C library function qsort,
+    we suggest reviewing the course reading
+    "Sorting Functions" in the "Function Pointers"
+    lesson and consulting "man qsort"
+    to read about the comparison function.
 
  - suit_t flush_suit(deck_t * hand);
    This function looks at the hand and determines
@@ -81,7 +89,7 @@ that you will need to write:
    of unsigned integers.  This should be familiar
    from the videos you watched.
    
-   In course4 (after you learn to dynamically allocate
+   In course 4 (after you learn to dynamically allocate
    memory), you will write get_match_counts,
    which will construct an array with one element
    per card in the hand.  That array will
@@ -95,7 +103,7 @@ that you will need to write:
    This function returns the index in the array (match_counts) whose
    value is n_of_akind.  The array has n elements.  The array match_counts
    may have multiple values equal to n_of_akind.  You should return
-   the LOWEST index whose value is n_of_akind [which also guarntees
+   the LOWEST index whose value is n_of_akind [which also guarantees
    it corresponds to the largest valued cards, since they will be sorted].
    (Once you figure out the best n_of_akind above,
     you will use this to locate that group of cards
@@ -125,14 +133,14 @@ that you will need to write:
 
  - int is_straight_at(deck_t * hand, size_t index, suit_t fs)
    This function should determine if there is a straight
-   starting at index in the given hand.  If fs is
-   NUM_SUITS, then it should look for any straight.
-   If fs is some other value, then it should look
-   for a straight flush in the specified suit.
+   starting at index (and only starting at index) in the
+   given hand.  If fs is NUM_SUITS, then it should look
+   for any straight.  If fs is some other value, then
+   it should look for a straight flush in the specified suit.
     This function should return:
-    -1 if an Ace-low straight was found
-     0  if no straight was found
-     1  if any other straight was found.
+    -1 if an Ace-low straight was found at that index
+     0  if no straight was found at that index
+     1  if any other straight was found at that index
 
    When writing this function, you can assume
    that the hand is sorted by value: the
@@ -151,7 +159,7 @@ that you will need to write:
      (2) You may have multiple cards with the
          same value, but still have a straight:
 	   As Ac Ks Kc Qh Jh 0d
-         has a straight, even though A K Q
+         has a straight even though A K Q
 	 do not appear next to each other in
 	 our sorted order.
   Hint: I made this easier on myself, by writing
@@ -160,11 +168,14 @@ that you will need to write:
    and
   int is_ace_low_straight_at(deck_t * hand, size_t index, suit_t fs);
 
-  The second of these lets met pull out the complexities of an ace
+  The second of these lets me pull out the complexities of an ace
   low straight.  However, in doing so, I realized that there
   would be a lot of duplication of code between the ace low straight
   helper and the original function (for an ace low, you want to find
-  a 5, then a straight of length 4: 5, 4, 3, 2).
+  a 5, then a straight of length 4: 5, 4, 3, 2).   This realization
+  caused me to pull out much of the code into is_n_length_straight_at,
+  so that I could call it with n=4 to search for the 5,4,3,2 part
+  of an ace low straight.
   
 
  - hand_eval_t build_hand_from_match(deck_t * hand,
@@ -182,10 +193,18 @@ that you will need to write:
    Then it should copy "n" cards from
    the hand, starting at "idx" into
    the first "n" elements of the hand_eval_t's 
-   "cards" array.  It should then fill the remainder
+   "cards" array.  The cards field in
+   hand_eval_t is declared as:
+         card_t * cards[5]
+   This is an array of pointers, each to a card_t.
+   Draw a picture to be sure you know how to name
+   each card_t "box" before you start writing code.
+
+   Your function should then fill the remainder
    of the "cards" array with the highest-value
    cards from the hand which were not in
    the "n of a kind".
+
    For example, given this hand:
      As Kc Kh Kd Qc 8s 5d
    The hand has 3 kings, and the As and Qc will break ties.
@@ -239,6 +258,9 @@ that you will need to write:
       of cards---if element 0 is the different, use that difference
       to determine your answer.  If element 0 is the same,
       look at element 1, and so on).
+Note that compare hands should return a positive number
+if hand 1 is better, 0 if the hands tie, and a negative number
+if hand 2 is better.
 
 You will also notice some functions at the bottom of eval.c that
 we provided.  You don't need to do anything to these---we wrote
@@ -253,7 +275,7 @@ provided some test infrastructure for you.
 
 If you do
 
-make test-eval
+make 
 
 You will compile the  test-eval program you are
 familiar with from Course 2. This program behaves
@@ -276,6 +298,28 @@ will tell you:
 
 Good thing you have all those test cases from Course 2
 to use with it!
+
+Because you have an object file test-eval.o and not the source
+test-eval.c, you may need to use the debugger differently than you're
+used to. For this test program, we recommend running gdb in emacs,
+then first, specifying the command line argument (in this case, a file
+name with your tests)
+
+set args tests.txt
+
+Then you will want to set a breakpoint in the code you wrote (since
+you can't see test-eval.c, where main is, to step through it). For
+example, if you just wrote the function is_straight_at, and it doesn't
+behave the way you expect, you can do
+
+break is_straight_at
+
+and gdb will pause execution any time the program calls that
+function. Then you can use the command "run" instead of "start," since
+you don't need to pause execution at the start of main. Also recall
+the command "continue," which you can review from the debugging
+lesson.
+
 
 As usual, when you are finished, use the "grade" command.
 When you pass, this, congratulations! You are done
