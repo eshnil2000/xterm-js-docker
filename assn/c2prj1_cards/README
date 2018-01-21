@@ -4,8 +4,8 @@ winning in poker in a situation described by an input file.
 
 In this portion of the project, you are going write some
 functions that work with cards (specifically, a struct
-which represents a card): printing them
-in human readable format, converting the pair of letters
+that represents a card): printing them
+in human-readable format, converting the pair of letters
 that describe a card back into a struct (which gets
 used to read the input from a file), etc.
 
@@ -13,25 +13,25 @@ There is a lot that will be required to complete
 the project that you will learn in the later
 courses (e.g., arrays, strings, dynamic memory allocation,
 file IO).  To make it so you can still run the poker
-simulation when you complete this project, we have provide
+simulation when you complete this project, we have provided
 object files (.o) for the later parts.  The included
-Makefile will build your cards.c with our .o files,
-if you do
+Makefile will build your cards.c with our .o files
+if you do:
 
 make poker
 
 You'll write all these parts later on, when you
-finish Courses 3 and 4, and have learned the
+finish Courses 3 and 4 and have learned the
 corresponding concepts.
 
 In the meantime, you can test your functions
 for this assignment by writing any code you
-want in my-test-main.c.   If you do "make"
+want in my-test-main.c.  If you do "make"
 (or "make test") then the included Makefile
 will build this and link it with your cards.o
 (compiling that if needed).
 
-To get started, take a look at cards.h
+To get started, take a look at cards.h.
 
 You will see that it starts by defining
 an enum suits (SPADES, HEARTS, DIAMONDS,
@@ -40,14 +40,14 @@ which will have a numeric value of 4 (indicating
 how many suits there are), and can also
 be used to indicate an invalid suit.
 
-Next, you will see a struct or a card.
+Next, you will see a struct for a card.
 This struct has two parts, a value
-(2,3,4,5,6,7,8,9,10,J,Q,K,A) and a suit.
+(2,3,4,5,6,7,8,9,10,J,Q,K,A) and a suit (s,h,d,c).
 Following the struct declaration, there
 are some #defines for constants for
 the values of Ace, King, Queen, and Jack.
 Accordingly, a card's value should
-be betwen 2 and 14 (inclusive).
+be between 2 and 14 (inclusive).
 
 There is also an enum for the hand
 ranking (what kind of poker hand you get).
@@ -57,7 +57,7 @@ to convert from the enumerated values
 to a string.
 
 Last are some function prototypes.
-You will write each of these in cards.c
+You will write each of these in cards.c.
 
 Now go into cards.c, and write each of these
 functions.  Here are the specifics: 
@@ -70,25 +70,29 @@ functions.  Here are the specifics:
   and its suit should be between SPADES
   and CLUBS (inclusive of both).
 
-- const char * ranking_to_string(hand_ranking_t r) ;
+- const char * ranking_to_string(hand_ranking_t r);
   This function should convert the
   hand_ranking_t enumerated value passed
   in to a string that describes it.  Remember
   that Drew showed you a nice way to do this
   with emacs keyboard macros!
 
-- char value_letter(card_t c) ;
-  This function should return the character which textually represents
-  the value of the passed in card.  For values 2--9, this should
-  be that digit.  For 10, it should be 0, and for Jack, Queen, King, and Ace,
-  it should be J, Q, K, and A  respectively.
+- char value_letter(card_t c);
+  This function should return the character that textually represents
+  the value of the passed-in card.  For values 2-9, this should
+  be that digit.  For 10, it should be '0', and for Jack, Queen, King, and Ace,
+  it should be 'J', 'Q', 'K', and 'A' respectively.
+  Hint: remember everything is a number.
+  For example, the character '0' has the decimal value 48,
+  and the character '5' has the decimal value 53, so you could represent
+  '5' as '0' + 5.
 
 - char suit_letter(card_t c);
-  This function should return the letter which textually represents
-  the suit of the card passed i  (s, h, d, or c for SPADES,
-  HEARTS, DIAMONDS, or CLUBS)
+  This function should return the letter that textually represents
+  the suit of the card passed in ('s', 'h', 'd', or 'c' for SPADES,
+  HEARTS, DIAMONDS, or CLUBS).
 
-- void print_card(card_t c) ;
+- void print_card(card_t c);
   This function should print out the textual
   representation of the card (hint: use the functions
   you previously wrote). It should print
@@ -102,9 +106,9 @@ functions.  Here are the specifics:
 - card_t card_from_letters(char value_let, char suit_let);
   This function should make and return a
   card_t whose value and suit correspond
-  to letters passed. If the values passed
+  to the letters passed in. If the values passed
   in are invalid, you should use assert()
-  or print an error message and exit(EXIT_FAILURE)
+  or print an error message and exit(EXIT_FAILURE).
 
 - card_t card_from_num(unsigned c);
   This function should take a number from 0 (inclusive)
@@ -114,14 +118,15 @@ functions.  Here are the specifics:
   is up to you, but you must guarantee
   that each valid value/suit combination
   corresponds to exactly one input value
-  in the range [0,52).
+  in the range [0,52). Hint: you may want to use the mod
+  operator % to find the remainder of a number divided by 13.
   (In Course 3, this function will be used
   to make a deck of cards by iterating
   over that range and calling it once
-  for each value---you just need
+  for each value--you just need
   to learn about arrays first so you
   have a place to put all those
-  cards).
+  cards.)
 
 ----------------------------------------------------
 Once you have done all of these (and tested
@@ -131,9 +136,9 @@ you can
 make poker
 
 and try out the poker odds computation.  It
-requires one command line argument, which is
-the input file to read.  In the input file,
-each line corresponds to one hand, and lists
+requires one command line argument--the input file to read.
+In the input file,
+each line corresponds to one hand and lists
 the cards (with textual representation
 you were working with above).  It also
 has placeholders for future cards, which
@@ -149,7 +154,7 @@ in a game of Texas Hold'em). All
 three hands share the King of clubs,
 the Queen of diamonds, and the 6
 of clubs (called the "flop"
-in Texas Hold'em---these are the
+in Texas Hold'em--these are the
 3rd, 4th, and 5th cards).  Each
 hand has its own private cards
 to start (the first has the
@@ -158,7 +163,7 @@ for example).
 
 The remainder of the hand will be
 played by dealing two more cards
-(?0 and ?1) which will be shared
+(?0 and ?1), which will be shared
 by the three hands.
 
 You could also craft an input
@@ -172,4 +177,3 @@ Ad Ah ?6 ?7 ?8
 9 cards remain in the future (?0
 through ?8), each appearing exactly
 once in one hand.
-

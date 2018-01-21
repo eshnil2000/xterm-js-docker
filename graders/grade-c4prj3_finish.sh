@@ -67,7 +67,7 @@ run_test (){
 		    #echo "delta=echo scale=4; ${ourPct}-${theirPct} | bc" >&2
 		    #echo "ok=echo scale=4; $delta<=0.5 && $delta>=-0.5 | bc" >&2
 		    delta=`echo "scale=4; ${ourPct}-${theirPct}" | bc`
-		    ok=`echo "scale=4; $delta<=0.5 && $delta>=-0.5" | bc`
+		    ok=`echo "scale=4; $delta<=0.9 && $delta>=-0.9" | bc`
 		    if [ "$ok" == "1" ]
 		    then
 			echo "    Hand $hnum was close enough to our answer"
@@ -98,22 +98,22 @@ run_test (){
 }
 echo " - Starting with some Texas Hold'em hands"
 cat /dev/fd/5 > inp.txt
-run_test inp.txt 2 10000 5
+run_test inp.txt 2 20000 15
 cat /dev/fd/6 > inp.txt
-run_test inp.txt 3 20000 10
+run_test inp.txt 3 25000 20
 cat /dev/fd/7 > inp2.txt
-run_test inp2.txt 3 20000 10
+run_test inp2.txt 3 25000 20
 cat /dev/fd/8 > inp2.txt
-run_test inp2.txt 2 20000 10
+run_test inp2.txt 2 25000 20
 cat /dev/fd/9 > inp3.txt
-run_test inp3.txt 4 20000 12
+run_test inp3.txt 4 80000 30
 cat /dev/fd/10 > inp.txt
-run_test inp.txt 2 10000 5
+run_test inp.txt 2 30000 7
 cat /dev/fd/11 > inp.txt
 echo " - Next, few Seven Card Stud hands"
-run_test inp.txt 2 15000 7
+run_test inp.txt 2 30000 10
 cat /dev/fd/12 > inp2.txt
-run_test inp2.txt 3 20000 15
+run_test inp2.txt 3 40000 18
 echo " - Then one from a completely made up poker variant"
 cat /dev/fd/13 > whacky.txt
 run_test whacky.txt 6 100000 30

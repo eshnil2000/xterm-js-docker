@@ -14,18 +14,18 @@ c2prj2_testing:90:11_read_ptr1:Week 4 Project / Reading: Rules of Poker
 11_read_ptr1:90:12_read_ptr2:Course 3's Week 1 Pointers / Video: Corrected Swap
 12_read_ptr2:90:13_read_arr1:Week 1 Pointers / Reading: Use Memory Checker Tools
 13_read_arr1:90:14_array_max:Week 2 Arrays / Reading: Writing Code with Arrays
-14_array_max:90:15_tests_subseq:
+14_array_max:90:15_tests_subseq:Week 2 Arrays / Reading: Array Size
 15_tests_subseq:90:16_subseq:
 16_subseq:90:17_read_arr2:
-17_read_arr2:90:18_reverse_str:
+17_read_arr2:90:18_reverse_str:Week 3 Uses of Pointers / Reading: Standard Library Functions
 18_reverse_str:90:19_bits_arr:
-19_bits_arr:90:20_rot_matrix:
+19_bits_arr:90:20_rot_matrix:Week 3 Uses of Pointers / Reading: Array of Strings
 20_rot_matrix:90:21_read_rec1:
-21_read_rec1:90:22_tests_power:
-22_tests_power:90:23_power_rec:
+21_read_rec1:90:22_tests_power:Week 4 Recursion / Reading: Is Recursion Slow?
+22_tests_power:90:23_power_rec:Week 4 Recursion / Video: Execution of Mutally Recurisve isOdd and isEven
 23_power_rec:90:c3prj1_deck:
-c3prj1_deck:90:c3prj2_eval:
-c3prj2_eval:90:24_read_arr3:
+c3prj1_deck:90:c3prj2_eval:Week 5 Project / Reading: Building a Deck
+c3prj2_eval:90:24_read_arr3:Week 5 Project / Reading: Evaluating a Hand
 24_read_arr3:90:25_break_encr:
 25_break_encr:90:26_tests_matrix_input:
 26_tests_matrix_input:90:27_matrix_input:
