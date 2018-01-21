@@ -82,57 +82,57 @@ deploy_production0:
   only:
   - master
 
-deploy_production1:
-  tags: 
-    - production1
-    - mooc-az-11
-    - coursera-xtermjs
-  stage: deploy
-  script:
-    - echo "Building the production app"
-    - ./build-production
-    - echo "Copy the git-remote and homedir templates into place for all users" 
-    - ./copy-gitremote-and-homedir-production
-    - echo "Deploy to production server"
-    - cd /srv/persistent-data/docker-scripts; ./run-everything
-  environment:
-    name: production
-  only:
-  - master
-
-deploy_production2:
-  tags: 
-    - production2
-    - mooc-az-12
-    - coursera-xtermjs
-  stage: deploy
-  script:
-    - echo "Building the production app"
-    - ./build-production
-    - echo "Copy the git-remote and homedir templates into place for all users" 
-    - ./copy-gitremote-and-homedir-production
-    - echo "Deploy to production server"
-    - cd /srv/persistent-data/docker-scripts; ./run-everything
-  environment:
-    name: production
-  only:
-  - master
-
-deploy_production3:
-  tags: 
-    - production3
-    - mooc-az-13
-    - coursera-xtermjs
-  stage: deploy
-  script:
-    - echo "Building the production app"
-    - ./build-production
-    - echo "Copy the git-remote and homedir templates into place for all users" 
-    - ./copy-gitremote-and-homedir-production
-    - echo "Deploy to production server"
-    - cd /srv/persistent-data/docker-scripts; ./run-everything
-  environment:
-    name: production
-  only:
-  - master
+#deploy_production1:
+#  tags: 
+#    - production1
+#    - mooc-az-11
+#    - coursera-xtermjs
+#  stage: deploy
+#  script:
+#    - echo "Building the production app"
+#    - ./build-production
+#    - echo "Copy the git-remote and homedir templates into place for all users" 
+#    - ./copy-gitremote-and-homedir-production
+#    - echo "Deploy to production server"
+#    - cd /srv/persistent-data/docker-scripts; ./run-everything
+#  environment:
+#    name: production
+#  only:
+#  - master
+#
+#deploy_production2:
+#  tags: 
+#    - production2
+#    - mooc-az-12
+#    - coursera-xtermjs
+#  stage: deploy
+#  script:
+#    - echo "Building the production app"
+#    - ./build-production
+#    - echo "Copy the git-remote and homedir templates into place for all users" 
+#    - ./copy-gitremote-and-homedir-production
+#    - echo "Deploy to production server"
+#    - cd /srv/persistent-data/docker-scripts; ./run-everything
+#  environment:
+#    name: production
+#  only:
+#  - master
+#
+#deploy_production3:
+#  tags: 
+#    - production3
+#    - mooc-az-13
+#    - coursera-xtermjs
+#  stage: deploy
+#  script:
+#    - echo "Building the production app"
+#    - ./build-production
+#    - echo "Copy the git-remote and homedir templates into place for all users" 
+#    - ./copy-gitremote-and-homedir-production
+#    - echo "Deploy to production server"
+#    - cd /srv/persistent-data/docker-scripts; ./run-everything
+#  environment:
+#    name: production
+#  only:
+#  - master
 
