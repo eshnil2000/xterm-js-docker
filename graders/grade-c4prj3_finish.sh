@@ -67,7 +67,7 @@ run_test (){
 		    #echo "delta=echo scale=4; ${ourPct}-${theirPct} | bc" >&2
 		    #echo "ok=echo scale=4; $delta<=0.5 && $delta>=-0.5 | bc" >&2
 		    delta=`echo "scale=4; ${ourPct}-${theirPct}" | bc`
-		    ok=`echo "scale=4; $delta<=0.9 && $delta>=-0.9" | bc`
+		    ok=`echo "scale=4; $delta<=1.3 && $delta>=-1.3" | bc`
 		    if [ "$ok" == "1" ]
 		    then
 			echo "    Hand $hnum was close enough to our answer"
