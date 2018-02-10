@@ -1,6 +1,6 @@
 For this assignment, you will be practicing writing, compiling, and
-running code.  You should write a C file with a main function
-that uses the printf function to print the message
+running code.  You should write a C file, called hello.c, with a main
+function that uses the printf function to print the message
 
 Hello World
 

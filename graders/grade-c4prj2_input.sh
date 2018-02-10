@@ -57,7 +57,7 @@ run_test (){
     fi
 }
 
-cat /dev/fd/6 > hand.txt
+cat /dev/fd/6 > hands.txt
 cat /dev/fd/7 > draw.txt
 echo "Testing with input file with "
 echo " o 1 hand"
@@ -66,7 +66,7 @@ run_test hands.txt draw.txt
 echo "Testing with input file with "
 echo " o Many hands"
 echo " o No unknown/future cards"
-cat /dev/fd/8 > hand.txt
+cat /dev/fd/8 > hands.txt
 run_test  hands.txt draw.txt
 
 echo "Testing with input file with "
