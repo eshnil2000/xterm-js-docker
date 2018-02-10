@@ -4,13 +4,13 @@ Now it is time to wrap up your poker project!
 
 You have four major things to do:
  (1) Write a few deck/evaluation functions that need
-     malloc/realloc/free [so you were not ready for them in
-     Course 3].  
+     malloc/realloc/free (which you were not ready for in
+     Course 3).  
  (2) Write the code to handle unknown cards (which
      we'll call "future cards" because they will be
      known in the future).
- (3) Read the input
- (4) Write a main function which puts this all together
+ (3) Read the input.
+ (4) Write a main function, which puts this all together
      and does the Monte Carlo simulation loop
      (repeatedly drawing different random cards
      for the future cards).
@@ -24,23 +24,24 @@ you will do (4), completing this project!
 Finish deck/evaluation
 ----------------------
 Add these functions to deck.c:
- - void add_card_to(deck_t * deck, card_t c) ;
+ - void add_card_to(deck_t * deck, card_t c);
    Add the particular card to the given deck (which will
-   involve reallocing the array of cards in that deck)
- - card_t * add_empty_card(deck_t * deck) ;
-   Add a card who value and suit are both 0.
-   This is will add an invalid card to use as a placeholder
+   involve reallocing the array of cards in that deck).
+ - card_t * add_empty_card(deck_t * deck);
+   Add a card whose value and suit are both 0, and return a pointer
+   to it in the deck.
+   This will add an invalid card to use as a placeholder
    for an unknown card.
- - deck_t * make_deck_exclude(deck_t * excluded_cards) ;
-   Create a deck which is full EXCEPT for all the cards
+ - deck_t * make_deck_exclude(deck_t * excluded_cards);
+   Create a deck that is full EXCEPT for all the cards
    that appear in excluded_cards.  For example,
-   if excluded cards has Kh and Qs, you would create
+   if excluded_cards has Kh and Qs, you would create
    a deck with 50 cards---all of them except Kh and Qs.
    You will need to use malloc to allocate this deck.
-   [You will want this for the next function].
-   Don't forget you wrote
-    int deck_contains(deck_t * d, card_t c)
-   in Course 3!  It might be useful here.
+   (You will want this for the next function).
+   Don't forget you wrote card_t card_from_num(unsigned c)
+   in Course 2 and int deck_contains(deck_t * d, card_t c)
+   in Course 3!  They might be useful here.
  - deck_t * build_remaining_deck(deck_t ** hands, size_t n_hands) ;
    This function takes an array of hands (remember
    that we use deck_t to represent a hand).  It then builds
@@ -54,13 +55,14 @@ Add these functions to deck.c:
    one deck with all the cards from all the hands
    (remember you just wrote add_card_to),
    and then pass it to make_deck_exclude.
-
  - void free_deck(deck_t * deck) ;
    Free the memory allocated to a deck of cards.
    For example, if you do
      deck_t * d = make_excluded_deck(something);
      free_deck(d);
-   it should free all the memory allocated by make_excluded_deck
+   it should free all the memory allocated by make_excluded_deck.
+   Once you have written it, add calls to free_deck anywhere you
+   need to to avoid memory leaks.
 
 Next, go back to eval.c, and implement:
  - unsigned * get_match_counts(deck_t * hand) ;

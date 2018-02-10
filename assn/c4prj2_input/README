@@ -95,6 +95,10 @@ In input.c, write the function:
      deck_t * hand_from_string(const char * str, future_cards_t * fc)
    and recommend you do the same.
 
+ Note that most of the rest of the code assumes that a poker hand
+ has AT LEAST 5 cards in it.  Your read_input function should enforce
+ this requirement. If there are fewer than 5 cards, print
+ a useful error message and exit.
 
 Again, we recommend you write your own testing code (e.g.,
 in test-input.c).   Once you are satisfied with

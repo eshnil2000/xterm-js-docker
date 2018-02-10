@@ -57,12 +57,12 @@ wrote along the way.  If so, you are confident in them too.
 
 But that leaves testing your whole program, which performs
 random simulations---that can be tricky.  So how can you do it?
-You could certainly work out the probabilities for a few things
-by hand... or you could find some professional poker tournaments
-on YouTube and write input files from the hands that they have.
-Since they show the odds in the corner, you know the right
-answer and can compare your results to it!  (If you
-are within +/- 0.5% its close enough for our purposes)
+To help you out, we have provided some test cases in provided-tests,
+along with the expected probabilities (in provided-tests/answers.txt)
+These probabilities are rounded to the nearest percent, and we
+don't expect your answer to be exact.  Also note that the probabiltiies
+do not always add to 100% since some hands have
+the possibility of ties. 
 
 If you have problems, you can make use of the testing
 infrastructure from eariler steps to help you sort
