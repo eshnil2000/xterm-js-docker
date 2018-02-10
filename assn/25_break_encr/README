@@ -31,9 +31,10 @@ Requirements:
  - Your program should use the frequency count information to 
    determine which letter is 'e', and solve for the key.
  - On success, your program should print a single line of output to
-   stdout, which should contain one decimal number (followed by a
+   stdout, which should contain one decimal (base 10) integer (followed by a
    newline character).  This number should be the encryption key used
-   on the text.
+   on the text.  It should be in the range [0,26).  That is, the
+   number you print should obey 0 <= answer < 26.
  - On failure, your program should print an appropriate error
    message to stderr, then exit with EXIT_FAILURE.
  - Provide a Makefile which compiles your program into
