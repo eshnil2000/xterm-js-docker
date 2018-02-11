@@ -13,7 +13,7 @@ run_test() {
     prog="$1"
     testfile="$2"
     IFS=$'\n'
-    for line in `cat $testfile`
+    for line in `cat $testfile | sed 's/^$/ /'`
     do
 	IFS=" " correct=`/usr/local/l2p/rot_matrix/rotateMatrix $line 2>&1`
 	IFS=" " broken=`$prog $line 2>&1`
