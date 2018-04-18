@@ -81,7 +81,7 @@ that you will need to write:
    If so, it returns the suit of the cards comprising
    the flush.  If not, it returns NUM_SUITS.
    For example:
-    Given Kd Qs 0s 9h 8s 7s, it would return SPADES.  
+    Given Ks Qs 0s 9h 8s 7s, it would return SPADES.  
     Given Kd Qd 0s 9h 8c 7c, it would return NUM_SUITS.
 
  - unsigned get_largest_element(unsigned * arr, size_t n);
